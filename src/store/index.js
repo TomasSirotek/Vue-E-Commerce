@@ -1,9 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
-// import firebase from '../firebase' 
 import 'firebase/firestore';
-import {dbMenuAdd} from '../firebase'
+import { dbMenuAdd } from '../firebase'
 
 
 
@@ -14,34 +12,40 @@ export default new Vuex.Store({
     menuItems: [],
   },
   mutations: {
-    setMenuItems : state => {
+    setMenuItems: state => {
 
       let menuItems = []
-    
-      dbMenuAdd.onSnapshot((snapshotItems)=> {
+      dbMenuAdd.onSnapshot((snapshotItems) => {
         menuItems = []
-        snapshotItems.forEach((doc) =>{
-          var menuItemData = doc.data();
-          console.log(doc.data())
-           menuItems.push({
-             ...menuItemData,
-             id:doc.id
-             
-           })
+
+        snapshotItems.forEach((doc) => {
+          console.log("only cards =>", doc.data().cards)
+          var menuItemData = doc.data() || doc.data().cards
+          var cards = doc.data().cards
+          console.log("=> special one ", cards)
+          menuItems.push({
+            ...menuItemData,
+            id: doc.id,
+          })
         })
         state.menuItems = menuItems
-      
       })
     },
   },
   actions: {
     setMenuItems: context => {
       context.commit('setMenuItems')
-  }
+    }
   },
-  getters:{
-    getMenuItems: state => state.menuItems
-   },
+  getters: {
+    getMenuItems: state => state.menuItems,
+
+    getProductById: (state) => (id) => {
+      return state.menuItems.map(menuItem => menuItem.id == id)
+
+
+    },
+  },
   modules: {
   }
 })

@@ -1,5 +1,6 @@
 <template>
      <div class="container">
+       
     <div class="header text-center">
       <h2 class="my-3">
     {{ cardsSection.title}}
@@ -12,6 +13,7 @@
             />
         </div>
     </div>
+
   </div> 
 
 </template>
@@ -23,7 +25,8 @@
         name:"MainCardsDisplay",
         components: {
             LargeCardsDisplay
-        }
+        },
+         
     }
 </script>
 
