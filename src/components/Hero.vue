@@ -1,5 +1,5 @@
 <template>
-  <section class="home">
+ <section class="home">
     <div class="container">
       <div class="row align-items-center">
         <div class=" col-lg-7 col-md-7 ">
@@ -24,7 +24,9 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> 
+
+  
 </template>
 
 <script>

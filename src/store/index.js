@@ -22,12 +22,15 @@ export default new Vuex.Store({
         menuItems = []
         snapshotItems.forEach((doc) =>{
           var menuItemData = doc.data();
+          console.log(doc.data())
            menuItems.push({
              ...menuItemData,
              id:doc.id
+             
            })
         })
         state.menuItems = menuItems
+      
       })
     },
   },
