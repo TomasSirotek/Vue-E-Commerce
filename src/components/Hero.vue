@@ -5,7 +5,7 @@
         <div class=" col-lg-7 col-md-7 ">
           <div class="text-area ">
             <h1>
-              Grand Theft Auto 5
+              Grand Theft Auto 5 <!-- not to hard core -->
             </h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,

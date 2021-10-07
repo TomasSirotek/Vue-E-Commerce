@@ -3,8 +3,6 @@ import Vuex from 'vuex'
 import 'firebase/firestore';
 import { dbMenuAdd } from '../firebase'
 
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -31,6 +29,8 @@ export default new Vuex.Store({
         state.menuItems = menuItems
       })
     },
+    
+    
   },
   actions: {
     setMenuItems: context => {
@@ -39,13 +39,14 @@ export default new Vuex.Store({
   },
   getters: {
     getMenuItems: state => state.menuItems,
-
-    getProductById: (state) => (id) => {
-      return state.menuItems.map(menuItem => menuItem.id == id)
-
-
+    
+     getProductById: (state) => (id) => {
+      return state.menuItems.find(menuItem => menuItem.id == id)
+  
     },
-  },
+  }, 
+
   modules: {
+
   }
 })

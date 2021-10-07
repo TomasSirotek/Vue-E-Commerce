@@ -16,8 +16,8 @@
               <em>Account</em>
             </template>
             <b-dropdown-item to="/about">Profile</b-dropdown-item>
-            <b-dropdown-item href="#">Sign Out</b-dropdown-item>
-            <b-dropdown-item to="/products/Products">All products</b-dropdown-item>
+            <b-dropdown-item to="/">Sign Out</b-dropdown-item>
+            <b-dropdown-item to="/products">All products</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>

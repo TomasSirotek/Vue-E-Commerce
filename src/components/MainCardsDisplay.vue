@@ -1,35 +1,27 @@
 <template>
-     <div class="container">
-       
-    <div class="header text-center">
-      <h2 class="my-3">
-    {{ cardsSection.title}}
-      </h2>
-        <div class="row ">
-            <LargeCardsDisplay
-            v-for="card in cardsSection.cards"
-            :key="card.id"
-            :card="card"
-            />
-        </div>
+ <router-link :to="`/products/${cardsSection.id}`">
+  <div class="col align-self-center">
+    <div class="card" style="width:15rem;">
+      <img src="@/assets/images/game-gta.jpg" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <h5 class="card-title">{{ cardsSection.title }}</h5>
+        <p class="card-text">{{ cardsSection.snippet }}</p>
+        <a href="#" class="btn btn-primary">{{ cardsSection.price }}</a>
+      </div>
     </div>
-
-  </div> 
-
+  </div>
+  </router-link>
 </template>
 
 <script>
- import LargeCardsDisplay from '@/components/LargeCardsDisplay.vue'
-    export default {
-        props: ["cardsSection"],
-        name:"MainCardsDisplay",
-        components: {
-            LargeCardsDisplay
-        },
-         
-    }
+export default {
+  props: ["cardsSection"],
+  name: "MainCardsDisplay",
+  components: {
+  },
+ 
+  
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

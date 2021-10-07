@@ -1,11 +1,16 @@
 <template>
   <div class="front-side">
     <Hero />
-    <MainCardsDisplay
-      v-for="item in menuItems"
-      :key="item.id"
-      :cardsSection="item"
-    />
+    <div class="container py-3">
+      <h2> On Sale </h2>
+      <div class="row">
+        <MainCardsDisplay
+          v-for="item in menuItems"
+          :key="item.id"
+          :cardsSection="item"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
