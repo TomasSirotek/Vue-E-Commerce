@@ -1,10 +1,14 @@
 <template>
     <div>
-        <h2>I am your cart</h2>
+        <h2>I am your cart</h2> <!-- put another component  -->
+       <div class="container text-center" v-if="!products.length ">
+           <h2>Staart Shopping pleeeease</h2>
+       </div>
+        
         <CartItem
         v-for="item in products" :key="item.id" :item="item" 
         />
-        <CartTotal/>
+        <CartTotal v-if="products.length > 0 "/>
     </div>
 </template>
 
