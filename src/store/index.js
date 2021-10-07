@@ -30,6 +30,25 @@ export default new Vuex.Store({
         })
         state.menuItems = menuItems
       })
+    }, // Work on adding to database 
+    orderedProducts: state => {
+
+      let menuItems = []
+      dbMenuAdd.onSnapshot((snapshotItems) => {
+        menuItems = []
+
+        snapshotItems.forEach((doc) => {
+          console.log("only cards =>", doc.data().cards)
+          var menuItemData = doc.data() || doc.data().cards
+          var cards = doc.data().cards
+          console.log("=> special one ", cards)
+          menuItems.push({
+            ...menuItemData,
+            id: doc.id,
+          })
+        })
+        state.menuItems = menuItems
+      })
     },
     addToCart(state, menuItem) {
       let item = state.cart.find(i => i.id === menuItem.id)

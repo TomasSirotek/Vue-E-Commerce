@@ -4,7 +4,7 @@
             <div class="row flex-column">
                 <h2>Total Price</h2> 
                 <h3>{{  cart_Total.toFixed(2) }} $</h3>
-            <b-button variant="success">Pay with Credit Bitcoin</b-button>
+            <b-button @click="addProduct" variant="success">Pay with Credit Bitcoin</b-button>
             </div>
         </div>
     </div>
@@ -16,6 +16,12 @@
         computed: {
             cart_Total(){
                 return this.$store.getters.cartTotal
+            },
+           
+        },
+        methods:{
+             addProduct(){
+                this.$store.dispatch("orderedProducts")
             }
         }
         
