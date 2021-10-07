@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="/cart">Cart <span class="counter ">0</span></b-nav-item>
+          <b-nav-item href="/cart">Cart <span class="counter ">{{ items}}</span></b-nav-item>
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
@@ -29,8 +29,20 @@
 export default {
   name: "Navbar",
   props: {},
+   computed: {
+     items() {
+      return this.$store.getters.tottal
+    }
+    
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.counter{
+  color:red;
+  border: 3px solid black;
+  border-radius: 20px;
+}
+</style>

@@ -10,6 +10,9 @@
 export default {
   components:{
     'Nav-bar' : Navbar
+  },
+  mounted() {
+    this.$store.commit("updateCartFromLocalStorage");
   }
   
 }

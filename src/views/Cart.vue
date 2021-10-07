@@ -1,7 +1,9 @@
 <template>
     <div>
         <h2>I am your cart</h2>
-        <CartItem/>
+        <CartItem
+        v-for="item in products" :key="item.id" :item="item" 
+        />
         <CartTotal/>
     </div>
 </template>
@@ -15,6 +17,12 @@ import CartTotal from "@/components/Cart/CartTotal.vue"
             CartItem,
             CartTotal,
         },
+         computed: {
+    products() {
+      return this.$store.getters.cartObjects;
+    }
+  },
+  
         
     }
 </script>

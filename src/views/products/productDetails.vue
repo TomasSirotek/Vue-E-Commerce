@@ -24,7 +24,7 @@
           </div>
           <!-- Export component -->
         </div>
-        <b-button variant="success">Add To Basket</b-button>
+        <b-button @click="addToCart" variant="success">Add To Basket</b-button>
         <div class="test-block">
           <h2></h2>
         </div>
@@ -36,14 +36,13 @@
 <script>
 export default {
   name: "productDetails",
-  data(){
-      return{
-
-      }
-     
+  methods: {
+    addToCart() {
+      this.$store.commit("addToCart", this.product);
+    },
   },
   components: {
-    
+
   },
   computed: {
      product() {

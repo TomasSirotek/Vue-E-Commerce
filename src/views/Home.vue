@@ -32,5 +32,6 @@ export default {
   beforeCreate() {
     this.$store.dispatch("setMenuItems");
   },
+  
 };
 </script>
