@@ -8,7 +8,7 @@
       <b-collapse id="nav-collapse" is-nav>
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
-          <b-nav-item href="/">Cart <span class="counter ">0</span></b-nav-item>
+          <b-nav-item href="/cart">Cart <span class="counter ">0</span></b-nav-item>
 
           <b-nav-item-dropdown right>
             <!-- Using 'button-content' slot -->
