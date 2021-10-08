@@ -87,23 +87,16 @@ export default {
               firstName: this.firstName,
               lastName: this.lastName,
               userName: this.userName,
+              email: this.email,
             });
-            console.log(user);
             console.log("working");
-
-            // ...
-          })
-          .catch((error) => {
-            /*  var errorCode = error.code;
-    var errorMessage = error.message; */
-            console.log(error);
-            // ..
+            this.$router.push({ path: "/" });
           });
 
         return;
       }
       this.error = true;
-      this.errroMsg = "Fill all the fields !";
+      this.errorMsg = "Fill all the fields dude !";
       return;
     },
   },
