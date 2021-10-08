@@ -12,6 +12,7 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
+    user: null,
   },
   mutations: {
     addCheckoutItem: (state) => {
@@ -19,7 +20,7 @@ export default new Vuex.Store({
       dbOrders.add({
         orderNumber: 1,
         orderFromUser: state.cart
-
+// try set timeout 
       })
 
     },
@@ -87,6 +88,10 @@ export default new Vuex.Store({
       updateLocalStorage(state.cart)
 
     },
+    SET_USER(state,user){
+      state.user = user
+
+  },
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
@@ -104,7 +109,8 @@ export default new Vuex.Store({
     // Setting from db 
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
-    }
+    },
+
   },
   getters: {
     getMenuItems: state => state.menuItems,
@@ -124,6 +130,9 @@ export default new Vuex.Store({
     tottal: state => {
       return state.cart.reduce((a, b) => a + b.quantity, 0);
     },
+    getUser(state){
+      return state.user
+  },
   },
 
 

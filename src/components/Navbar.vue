@@ -16,7 +16,7 @@
               <em>Account</em>
             </template>
             <b-dropdown-item to="/about">Profile</b-dropdown-item>
-            <b-dropdown-item to="/">Sign In</b-dropdown-item>
+            <b-dropdown-item to="/Login">SignIn/Register</b-dropdown-item>
             <b-dropdown-item to="/products">All products</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>

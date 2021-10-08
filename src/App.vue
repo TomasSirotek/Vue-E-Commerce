@@ -1,21 +1,49 @@
 <template>
   <div id="app">
-    <Nav-bar></Nav-bar>
-    <router-view/>
+    <Nav-bar v-if="!noNav"></Nav-bar>
+    <router-view />
   </div>
 </template>
 
 <script>
- import Navbar from '@/components/Navbar.vue'
+import Navbar from "@/components/Navbar.vue";
 export default {
-  components:{
-    'Nav-bar' : Navbar
+  components: {
+    "Nav-bar": Navbar,
+  },
+  data() {
+    return {
+      noNav: null,
+    };
   },
   mounted() {
     this.$store.commit("updateCartFromLocalStorage");
-  }
-  
-}
+  },
+
+  created() {
+    this.checkRoute();
+  },
+
+  methods: {  // checker for routers navigation
+    checkRoute() {
+      if (
+        this.$route.name === "Login" ||
+        this.$route.name === "Register" ||
+        this.$route.name === "PasswordReset"
+      ) {
+        this.noNav = true;
+        return;
+      }
+      this.noNav = false;
+    },
+  },
+  watch: {
+    // Watcher for routes
+    $route() {
+      this.checkRoute();
+    },
+  },
+};
 </script>
 
 <style lang="scss">
