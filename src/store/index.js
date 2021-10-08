@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore';
-import { dbMenuAdd, dbOrders } from '../firebase'
+import { dbMenuAdd, dbOrders,db } from '../firebase'
+import firebase from "firebase/compat";
 import "firebase/compat/auth";
 import "firebase/firestore";
 
@@ -14,12 +15,19 @@ export default new Vuex.Store({
     cart: [],
     orderItems: [],
     user:null,
+    profileEmail:null,
+    profileFirstName:null,
+    profileLastName:null,
+    profileUserName:null,
+    profileId:null,
+    profileInitials:null,
   },
   mutations: {
-    updateUser(state ,{ user }){
-      Vue.set(state,"user",user)
+    updateUser(state,payload){
+      state.user = payload;
 
     },
+
     addCheckoutItem: (state) => {
 
       dbOrders.add({
@@ -91,7 +99,19 @@ export default new Vuex.Store({
       state.cart.splice(item, 1)
       updateLocalStorage(state.cart)
 
-    }, // user 
+    },// set details
+    setProfileDetails(state,doc){
+      state.profileId = doc.id;
+      state.profileEmail = doc.data().email;
+      state.profileFirstName = doc.data().firstName;
+      state.profileLastName = doc.data().lastName;
+      state.profileUserName = doc.data().userName;
+    }, // inititals match
+    setProfileInitials(state){
+     state.profileInitials = 
+      state.profileFirstName.match(/(\b\S)?/g).join("")+
+      state.profileLastName.match(/(\b\S)?/g).join("");
+    },  
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
@@ -110,10 +130,15 @@ export default new Vuex.Store({
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
     }, // Auth here 
-    
+    async getCurrentUser({commit}){
+      const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid);
+      const dbFinal = await dataBase.get();
+      commit("setProfileDetails",dbFinal);
+      commit("setProfileInitials")
+    },
   
   },
-  getters: {
+  getters: { 
     getMenuItems: state => state.menuItems,
     getOrderItems: state => state.orderItems,
     user:(state) => state.user,
