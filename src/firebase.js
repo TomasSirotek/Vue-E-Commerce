@@ -11,8 +11,11 @@ const firebaseConfig = {
     appId: "1:482335117020:web:8f0101f52c0abf7ecdae19"
   };
   firebase.initializeApp(firebaseConfig);
+
+ 
   
 export const db = firebase.firestore()
 export const dbMenuAdd = db.collection("menuItems") 
 export const dbOrders = db.collection("orderedItems")
+
 

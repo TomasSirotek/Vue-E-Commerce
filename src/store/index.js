@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 import 'firebase/firestore';
 import { dbMenuAdd, dbOrders } from '../firebase'
 
-
 Vue.use(Vuex)
 
 
@@ -87,7 +86,7 @@ export default new Vuex.Store({
       state.cart.splice(item, 1)
       updateLocalStorage(state.cart)
 
-    },
+    }, // user 
     SET_USER(state,user){
       state.user = user
 
@@ -109,8 +108,24 @@ export default new Vuex.Store({
     // Setting from db 
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
+    }, // Auth here 
+    async onAuthStateChangedAction(state, { authUser, }) {
+      if (!authUser) {
+        // remove state
+        state.commit('SET_USER', null)
+  
+        //redirect from here
+        this.$router.push({
+          path: '/auth/login',
+        })
+      } else {
+        const { uid, email } = authUser
+        state.commit('SET_USER', {
+          uid,
+          email,
+        })
+      }
     },
-
   },
   getters: {
     getMenuItems: state => state.menuItems,

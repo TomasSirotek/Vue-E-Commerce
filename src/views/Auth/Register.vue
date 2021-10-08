@@ -29,7 +29,12 @@
         />
       </div>
 
-      <b-button variant="outline-primary" type="submit">Register</b-button>
+      <b-button
+        variant="outline-primary"
+        type="submit"
+        @click.prevent="register"
+        >Register</b-button
+      >
     </form>
 
     <span
@@ -40,30 +45,61 @@
 </template>
 
 <script>
+import "firebase/compat/auth";
+import firebase from "firebase/compat";
+import "firebase/firestore";
+import { db } from "../../firebase.js";
+
 export default {
   name: "Register",
   data() {
     return {
-      email: null,
-      password: null,
-      firstName: null,
-      lastName: null,
-      userName: null,
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      userName: "",
       error: null,
-      errroMsg: "",
+      errorMsg: "",
     };
   },
   methods: {
     register() {
       if (
-        this.email !== "" ||
-        this.password !== "" ||
-        this.firstName !== "" ||
-        this.lastName !== "" ||
+        this.email !== "" &&
+        this.password !== "" &&
+        this.firstName !== "" &&
+        this.lastName !== "" &&
         this.userName !== ""
       ) {
-          this.error= false;
-          this.errroMsg= "";
+        this.error = false;
+        this.errorMsg = "";
+
+        console.log("working");
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.email, this.password)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            const users = db.collection("users").doc(user.uid);
+            users.set({
+              firstName: this.firstName,
+              lastName: this.lastName,
+              userName: this.userName,
+            });
+            console.log(user);
+            console.log("working");
+
+            // ...
+          })
+          .catch((error) => {
+            /*  var errorCode = error.code;
+    var errorMessage = error.message; */
+            console.log(error);
+            // ..
+          });
+
         return;
       }
       this.error = true;
