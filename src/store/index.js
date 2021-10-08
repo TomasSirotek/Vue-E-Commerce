@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore';
-import { dbMenuAdd } from '../firebase'
+import { dbMenuAdd ,dbOrders   } from '../firebase'
+
 
 Vue.use(Vuex)
 
@@ -10,8 +11,16 @@ export default new Vuex.Store({
   state: {
     menuItems: [],
     cart: [],
+    orderItems:[],
   },
   mutations: {
+    addCheckoutItem:(card)=>{
+      dbOrders.add({
+        orderNumber:1, 
+        field: card
+      })
+
+    },
     setMenuItems: state => {
 
       let menuItems = []
@@ -19,10 +28,8 @@ export default new Vuex.Store({
         menuItems = []
 
         snapshotItems.forEach((doc) => {
-          console.log("only cards =>", doc.data().cards)
-          var menuItemData = doc.data() || doc.data().cards
-          var cards = doc.data().cards
-          console.log("=> special one ", cards)
+          var menuItemData = doc.data() 
+          console.log(doc.data())
           menuItems.push({
             ...menuItemData,
             id: doc.id,
@@ -30,26 +37,26 @@ export default new Vuex.Store({
         })
         state.menuItems = menuItems
       })
-    }, // Work on adding to database 
-    orderedProducts: state => {
+    }, // Work on adding to database dbOrders []
+    setOrderItems: state => {
 
-      let menuItems = []
-      dbMenuAdd.onSnapshot((snapshotItems) => {
-        menuItems = []
+      let orderItems = []
+      dbOrders.onSnapshot((snapshotItems) => {
+        orderItems = []
 
         snapshotItems.forEach((doc) => {
-          console.log("only cards =>", doc.data().cards)
-          var menuItemData = doc.data() || doc.data().cards
-          var cards = doc.data().cards
-          console.log("=> special one ", cards)
-          menuItems.push({
-            ...menuItemData,
+          var orderItemData = doc.data() 
+          console.log(doc.data())
+          orderItems.push({
+            ...orderItemData,
             id: doc.id,
           })
         })
-        state.menuItems = menuItems
+        state.orderItems = orderItems
       })
-    },
+    }, 
+
+
     addToCart(state, menuItem) {
       let item = state.cart.find(i => i.id === menuItem.id)
       if (item) {
@@ -75,7 +82,7 @@ export default new Vuex.Store({
       state.cart.splice(item,1)
       updateLocalStorage(state.cart)
 
-  },
+  }, 
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
@@ -86,10 +93,19 @@ export default new Vuex.Store({
   actions: {
     setMenuItems: context => {
       context.commit('setMenuItems')
+    },
+    setOrderItems: context => {
+      context.commit('setOrderItems')
+    },
+    // Setting from db 
+    setCheckoutItem:(context) =>{
+      context.commit('addCheckoutItem')
     }
   },
   getters: {
     getMenuItems: state => state.menuItems,
+    getOrderItems: state => state.OrderItems,
+    // add getter for current orders 
 
     getProductById: (state) => (id) => {
       return state.menuItems.find(menuItem => menuItem.id == id)
