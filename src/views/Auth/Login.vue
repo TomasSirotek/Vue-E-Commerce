@@ -2,6 +2,7 @@
       <div class="container text-center py-5">
     LOGIN
     <form >
+        <div class="error" v-show="error">{{ this.errorMsg }}</div>
       <div class="login">
         <input type="text" placeholder="email" v-model="email"/>
       </div>
@@ -10,7 +11,7 @@
         <input type="password" placeholder="password" v-model="password" />
       </div>
 
-      <b-button variant="outline-primary" type="submit" 
+      <b-button variant="outline-primary" type="submit" @click.prevent="logIn" 
         >Login</b-button
       >
     </form>
@@ -28,13 +29,44 @@
 </template>
 
 <script>
+import "firebase/compat/auth";
+import firebase from "firebase/compat";
+import "firebase/firestore";
     export default {
         name:"Login",
         data(){
             return{
-                email: null,
-                password:null,
+                email: "",
+                password:"",
+                errorMsg:"",
+                error:null,
             }
+        },
+        methods: {
+           logIn() {
+      if (
+        this.email !== "" &&
+        this.password !== ""
+        ) {
+        this.error = false;
+        this.errorMsg = "";
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(this.email, this.password)
+          .then(() =>{
+                 
+            
+            this.$router.push({ path: "/" });
+            console.log(firebase.auth().currentUser.uid);
+          }).catch((err) => {
+               this.error = true;
+              this.errorMsg = err.message;
+          })
+
+      }
+     
+     
+    },
         }
     }
 </script>

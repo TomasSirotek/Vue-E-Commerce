@@ -4,13 +4,14 @@
 <InfoModal
 v-if="modalActive"
 v-on:close-btn="closeBtn"
+:modalMessage="modalMessage"
 />
 
     <form >
       <div class="email">
         <input type="text" placeholder="email" v-model="email"/>
       </div>
-    <b-button variant="outline-primary" type="submit" 
+    <b-button variant="outline-primary" type="submit"  @click.prevent="resetPsw"
         >Reset</b-button
       >
         <Loading
@@ -24,6 +25,9 @@ v-on:close-btn="closeBtn"
 <script>
 import InfoModal from "@/components/InfoModal.vue"
 import Loading from "@/components/Loading.vue"
+import "firebase/compat/auth";
+import firebase from "firebase/compat";
+import "firebase/firestore";
     export default {
         name:"PasswordReset",
         components: {
@@ -36,14 +40,28 @@ import Loading from "@/components/Loading.vue"
                 modalActive: false,
                 loading: false,
                 modalMessage : "",
-                
-            
-            }
+                }
         },
         methods: {
             closeBtn(){
                 this.modalActive = !this.modalActive;
                 this.email = "";
+            },
+            resetPsw(){
+                this.loading = true;
+                firebase
+                .auth()
+                .sendPasswordResetEmail(this.email)
+                .then(()=>{
+                    this.modalMessage = "If you are with us check your mail !";
+                    this.loading = false;
+                    this.modalActive = true;
+                }).catch( err =>{
+                    this.modalMessage = err.message;
+                    this.loading = false;
+                    this.modalActive = true
+                    console.log(err)
+                })
             },
          
         }

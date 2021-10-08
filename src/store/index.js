@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore';
 import { dbMenuAdd, dbOrders } from '../firebase'
+import "firebase/compat/auth";
+import "firebase/firestore";
 
 Vue.use(Vuex)
 
@@ -11,15 +13,18 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
-    user: null,
+    user:null,
   },
   mutations: {
+    updateUser(state ,{ user }){
+      Vue.set(state,"user",user)
+
+    },
     addCheckoutItem: (state) => {
 
       dbOrders.add({
         orderNumber: 1,
         orderFromUser: state.cart
-// try set timeout 
       })
 
     },
@@ -87,10 +92,6 @@ export default new Vuex.Store({
       updateLocalStorage(state.cart)
 
     }, // user 
-    SET_USER(state,user){
-      state.user = user
-
-  },
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
@@ -109,27 +110,13 @@ export default new Vuex.Store({
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
     }, // Auth here 
-    async onAuthStateChangedAction(state, { authUser, }) {
-      if (!authUser) {
-        // remove state
-        state.commit('SET_USER', null)
+    
   
-        //redirect from here
-        this.$router.push({
-          path: '/auth/login',
-        })
-      } else {
-        const { uid, email } = authUser
-        state.commit('SET_USER', {
-          uid,
-          email,
-        })
-      }
-    },
   },
   getters: {
     getMenuItems: state => state.menuItems,
     getOrderItems: state => state.orderItems,
+    user:(state) => state.user,
     // add getter for current orders 
 
     getProductById: (state) => (id) => {
@@ -145,9 +132,7 @@ export default new Vuex.Store({
     tottal: state => {
       return state.cart.reduce((a, b) => a + b.quantity, 0);
     },
-    getUser(state){
-      return state.user
-  },
+   
   },
 
 

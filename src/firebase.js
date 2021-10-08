@@ -11,7 +11,10 @@ const firebaseConfig = {
     appId: "1:482335117020:web:8f0101f52c0abf7ecdae19"
   };
   firebase.initializeApp(firebaseConfig);
-
+// look later
+  firebase.auth().onAuthStateChanged((user) =>{
+    this.store.commit("updateUser",{user})
+  })
  
   
 export const db = firebase.firestore()
