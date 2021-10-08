@@ -4,7 +4,7 @@
     <div class="row">
       <div class="container">
         <div>
-          <h2>{{ inputSection.title }}</h2>
+          <h2></h2>
         </div>
       </div>
     </div>

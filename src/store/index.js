@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore';
-import { dbMenuAdd ,dbOrders   } from '../firebase'
+import { dbMenuAdd, dbOrders } from '../firebase'
 
 
 Vue.use(Vuex)
@@ -11,13 +11,15 @@ export default new Vuex.Store({
   state: {
     menuItems: [],
     cart: [],
-    orderItems:[],
+    orderItems: [],
   },
   mutations: {
-    addCheckoutItem:(card)=>{
+    addCheckoutItem: (state) => {
+
       dbOrders.add({
-        orderNumber:1, 
-        field: card
+        orderNumber: 1,
+        orderFromUser: state.cart
+
       })
 
     },
@@ -28,7 +30,7 @@ export default new Vuex.Store({
         menuItems = []
 
         snapshotItems.forEach((doc) => {
-          var menuItemData = doc.data() 
+          var menuItemData = doc.data()
           console.log(doc.data())
           menuItems.push({
             ...menuItemData,
@@ -37,7 +39,9 @@ export default new Vuex.Store({
         })
         state.menuItems = menuItems
       })
-    }, // Work on adding to database dbOrders []
+    },
+
+// Work on adding to database dbOrders []
     setOrderItems: state => {
 
       let orderItems = []
@@ -45,7 +49,7 @@ export default new Vuex.Store({
         orderItems = []
 
         snapshotItems.forEach((doc) => {
-          var orderItemData = doc.data() 
+          var orderItemData = doc.data()
           console.log(doc.data())
           orderItems.push({
             ...orderItemData,
@@ -54,7 +58,7 @@ export default new Vuex.Store({
         })
         state.orderItems = orderItems
       })
-    }, 
+    },
 
 
     addToCart(state, menuItem) {
@@ -66,23 +70,23 @@ export default new Vuex.Store({
       }
       updateLocalStorage(state.cart)
     },
-    removeFromCart(state,product){
+    removeFromCart(state, product) {
       let item = state.cart.find(i => i.id === product.id)
-      if(item){
-          if(item.quantity > 1 ){
-              item.quantity--
-          }else{
-              state.cart = state.cart.filter( i => i.id !== product.id)
-          }
+      if (item) {
+        if (item.quantity > 1) {
+          item.quantity--
+        } else {
+          state.cart = state.cart.filter(i => i.id !== product.id)
+        }
       }
       updateLocalStorage(state.cart)
-  },
-  removeItem(state,product){
+    },
+    removeItem(state, product) {
       let item = state.cart.find(i => i.id === product.id)
-      state.cart.splice(item,1)
+      state.cart.splice(item, 1)
       updateLocalStorage(state.cart)
 
-  }, 
+    },
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
@@ -94,17 +98,17 @@ export default new Vuex.Store({
     setMenuItems: context => {
       context.commit('setMenuItems')
     },
-    setOrderItems: context => {
+    setOrderItems: (context) => {
       context.commit('setOrderItems')
     },
     // Setting from db 
-    setCheckoutItem:(context) =>{
+    setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
     }
   },
   getters: {
     getMenuItems: state => state.menuItems,
-    getOrderItems: state => state.OrderItems,
+    getOrderItems: state => state.orderItems,
     // add getter for current orders 
 
     getProductById: (state) => (id) => {
@@ -118,8 +122,8 @@ export default new Vuex.Store({
       return state.cart.reduce((a, b) => a + (b.price * b.quantity), 0)
     },
     tottal: state => {
-      return state.cart.reduce((a,b) => a + b.quantity,0);
-  },
+      return state.cart.reduce((a, b) => a + b.quantity, 0);
+    },
   },
 
 
