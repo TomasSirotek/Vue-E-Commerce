@@ -25,8 +25,7 @@ export default new Vuex.Store({
   mutations: {
     updateUser(state,payload){
       state.user = payload;
-
-    },
+ },
 
     addCheckoutItem: (state) => {
 
@@ -117,6 +116,9 @@ export default new Vuex.Store({
       if (cart) {
         state.cart = JSON.parse(cart)
       }
+    },
+    filterProducts(state,payload){
+      state.menuItems = state.menuItems.filter(i => i.id !== payload)
     }
   },
   actions: {
@@ -135,6 +137,11 @@ export default new Vuex.Store({
       const dbFinal = await dataBase.get();
       commit("setProfileDetails",dbFinal);
       commit("setProfileInitials")
+    }, // deletation make
+    async deleteProduct({ commit},payload){
+      const getProduct = await db.collection("menuItems").doc(payload);
+      await getProduct.delete();
+      commit("filterProducts",payload)
     },
   
   },

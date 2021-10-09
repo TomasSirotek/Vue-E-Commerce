@@ -17,7 +17,8 @@
           <h1 class="h3 mb-4 text-gray-800">Welcome to Product Customization</h1>
         </div>
         <div>
-              <AddProduct/>
+              <AddProduct
+              />
         </div>
        
         <!-- /.container-fluid -->
@@ -47,6 +48,7 @@ export default {
     FooterAdmin,
     AddProduct,
   },
+  
 };
 </script>
 

@@ -149,17 +149,12 @@ export default {
                  dbMenuAdd.add({
                 title: this.title,
                 snippet: this.description,
-                count: this.count,
+                inStock: this.count,
                 price: this.price,
                 category: this.category,
 
             });
-            this.title = "",
-            this.description = "",
-            this.count = "",
-            this.price = "",
-            this.category = "",
-            this.errorMsg = ""
+            this.reset();
             console.log("added to db")
               return;
             }
@@ -168,6 +163,9 @@ export default {
             return;
            
 
+        },
+        reset(){
+            Object.assign(this.$data, this.$options.data.apply(this));
         }
     }
 };
