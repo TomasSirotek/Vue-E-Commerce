@@ -346,8 +346,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <!-- Add ingo here -->
-                  <p>info is gonna be here</p>
+              <Table/>
                 </div>
               </div>
             </div>
@@ -363,7 +362,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                  <p>another chart or smth here</p>
+                <SoldTable/>
                 </div>
               </div>
             </div>
@@ -389,7 +388,15 @@
 </template>
 
 <script>
-export default {};
+import Table from "@/components/Admin/Table.vue"
+import SoldTable from "@/components/Admin/SoldTable.vue"
+export default {
+  name: "admin",
+  components: {
+    Table,
+    SoldTable,
+  },
+};
 </script>
 
 <style lang="scss" scoped></style>
