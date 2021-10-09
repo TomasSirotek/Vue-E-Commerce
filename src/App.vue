@@ -39,6 +39,7 @@ export default {
         this.$route.name === "Login" ||
         this.$route.name === "Register" ||
         this.$route.name === "Admin" ||
+        this.$route.name === "ProductCustom" ||
         this.$route.name === "PasswordReset"
       ) {
         this.noNav = true;
