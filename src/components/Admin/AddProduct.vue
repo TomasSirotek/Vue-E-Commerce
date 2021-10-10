@@ -1,7 +1,7 @@
 <template>
   <div class="row justify-content-center">
     <!-- Area Chart -->
-    <div class="col-xl-10 col-lg-10">
+    <div class="col-xl-12 col-lg-12">
       <div class="card shadow mb-4">
         <!-- Card Header - Dropdown -->
         <div

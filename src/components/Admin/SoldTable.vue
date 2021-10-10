@@ -38,14 +38,15 @@
 <script>
 export default {
   name: "SoldTable",
-  computed: {
+ 
+   computed: {
     all() {
       return this.$store.getters.getOrderItems;
     },
   },
   beforeCreate() {
     this.$store.dispatch("setOrderItems");
-  },
+  }, 
 };
 </script>
 

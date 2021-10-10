@@ -119,7 +119,11 @@ export default new Vuex.Store({
     },
     filterProducts(state,payload){
       state.menuItems = state.menuItems.filter(i => i.id !== payload)
-    }
+    },
+  /*   updateProducts(state,payload){
+      state.menuItems = payload.title
+    },   Redo */
+  
   },
   actions: {
     setMenuItems: context => {
@@ -143,6 +147,12 @@ export default new Vuex.Store({
       await getProduct.delete();
       commit("filterProducts",payload)
     },
+   /* Redo */
+   /*  async updateFb({ commit },payload){
+      const updateProduct = await db.collection("menuItems").doc(payload);
+      await updateProduct.update();
+      commit("updateProducts",payload)
+    }, */
   
   },
   getters: { 

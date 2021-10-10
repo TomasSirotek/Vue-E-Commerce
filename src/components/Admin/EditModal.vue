@@ -1,7 +1,7 @@
 <template>
   <b-modal id="bv-modal-example" hide-footer>
     <template #modal-title>
-      Edit product  
+      Edit product 
     </template>
     <div class="d-block text-center">
       <form class="user">
@@ -11,45 +11,10 @@
             class="form-control form-control-user"
             id="exampleInputEmail"
             placeholder="title"
-            v-model="productSection.title"
+            v-model="test.title"
           />
         </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control form-control-user"
-            id="exampleInputEmail"
-            placeholder="category"
-            v-model="productSection.category"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control form-control-user"
-            id="exampleInputEmail"
-            placeholder="onSale"
-            v-model="productSection.onSale"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control form-control-user"
-            id="exampleInputEmail"
-            placeholder="desription"
-            v-model="productSection.desription"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            class="form-control form-control-user"
-            id="exampleInputEmail"
-            placeholder="In stock"
-            v-model="productSection.inStock"
-          />
-        </div>
+       
       </form>
      
     </div>
@@ -65,6 +30,17 @@
 <script>
 export default {
   name: "EditModal",
+
+  data() {
+      return{
+          title:"",
+          category:"",
+          onSale:"",
+          description:"",
+          inStock:"",
+          
+      }
+  },
   methods: {
     
   }

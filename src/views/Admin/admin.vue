@@ -162,7 +162,9 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                <SoldTable/>
+                <SoldTable
+               
+                />
                 </div>
               </div>
             </div>
