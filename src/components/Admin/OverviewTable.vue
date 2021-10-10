@@ -39,7 +39,7 @@
           </table>
         </div>
       </div>
-       <b-modal v-model="modalShow">
+        <b-modal v-model="modalShow">
            <h2>Edit Your Item</h2>
              <form ref="form">
         <b-form-group

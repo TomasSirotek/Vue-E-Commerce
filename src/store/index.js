@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore';
-import { dbMenuAdd, dbOrders,db } from '../firebase'
+import { dbMenuAdd, dbOrders, db } from '../firebase'
 import firebase from "firebase/compat";
 import "firebase/compat/auth";
 import "firebase/firestore";
@@ -14,18 +14,27 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
-    user:null,
-    profileEmail:null,
-    profileFirstName:null,
-    profileLastName:null,
-    profileUserName:null,
-    profileId:null,
-    profileInitials:null,
+    productPhotoFileUrl: null,
+    productPhotoName: "",
+    user: null,
+    profileEmail: null,
+    profileFirstName: null,
+    profileLastName: null,
+    profileUserName: null,
+    profileId: null,
+    profileInitials: null,
   },
   mutations: {
-    updateUser(state,payload){
+    updateUser(state, payload) {
       state.user = payload;
- },
+    },
+    fileNameChange(state, payload) {
+      state.productPhotoName = payload
+    },
+    createFileURL(state, payload) {
+      state.productPhotoFileUrl = payload
+    },
+
 
     addCheckoutItem: (state) => {
 
@@ -53,7 +62,7 @@ export default new Vuex.Store({
       })
     },
 
-// Work on adding to database dbOrders []
+    // Work on adding to database dbOrders []
     setOrderItems: state => {
 
       let orderItems = []
@@ -99,31 +108,31 @@ export default new Vuex.Store({
       updateLocalStorage(state.cart)
 
     },// set details
-    setProfileDetails(state,doc){
+    setProfileDetails(state, doc) {
       state.profileId = doc.id;
       state.profileEmail = doc.data().email;
       state.profileFirstName = doc.data().firstName;
       state.profileLastName = doc.data().lastName;
       state.profileUserName = doc.data().userName;
     }, // inititals match
-    setProfileInitials(state){
-     state.profileInitials = 
-      state.profileFirstName.match(/(\b\S)?/g).join("")+
-      state.profileLastName.match(/(\b\S)?/g).join("");
-    },  
+    setProfileInitials(state) {
+      state.profileInitials =
+        state.profileFirstName.match(/(\b\S)?/g).join("") +
+        state.profileLastName.match(/(\b\S)?/g).join("");
+    },
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
         state.cart = JSON.parse(cart)
       }
     },
-    filterProducts(state,payload){
+    filterProducts(state, payload) {
       state.menuItems = state.menuItems.filter(i => i.id !== payload)
     },
-  /*   updateProducts(state,payload){
-      state.menuItems = payload.title
-    },   Redo */
-  
+    /*   updateProducts(state,payload){
+        state.menuItems = payload.title
+      },   Redo */
+
   },
   actions: {
     setMenuItems: context => {
@@ -136,29 +145,29 @@ export default new Vuex.Store({
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
     }, // Auth here 
-    async getCurrentUser({commit}){
+    async getCurrentUser({ commit }) {
       const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid);
       const dbFinal = await dataBase.get();
-      commit("setProfileDetails",dbFinal);
+      commit("setProfileDetails", dbFinal);
       commit("setProfileInitials")
     }, // deletation make
-    async deleteProduct({ commit},payload){
+    async deleteProduct({ commit }, payload) {
       const getProduct = await db.collection("menuItems").doc(payload);
       await getProduct.delete();
-      commit("filterProducts",payload)
+      commit("filterProducts", payload)
     },
-   /* Redo */
-   /*  async updateFb({ commit },payload){
-      const updateProduct = await db.collection("menuItems").doc(payload);
-      await updateProduct.update();
-      commit("updateProducts",payload)
-    }, */
-  
+    /* Redo */
+    /*  async updateFb({ commit },payload){
+       const updateProduct = await db.collection("menuItems").doc(payload);
+       await updateProduct.update();
+       commit("updateProducts",payload)
+     }, */
+
   },
-  getters: { 
+  getters: {
     getMenuItems: state => state.menuItems,
     getOrderItems: state => state.orderItems,
-    user:(state) => state.user,
+    user: (state) => state.user,
     // add getter for current orders 
 
     getProductById: (state) => (id) => {
@@ -174,7 +183,7 @@ export default new Vuex.Store({
     tottal: state => {
       return state.cart.reduce((a, b) => a + b.quantity, 0);
     },
-   
+
   },
 
 
