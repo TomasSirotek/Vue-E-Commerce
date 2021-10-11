@@ -4,7 +4,7 @@
       <div class="col-lg-5 col-md-5 text-center">
         <div class="img-product">
           <img
-            src="@/assets/images/game-gta.jpg"
+            :src="product.imageCover"
             alt="product-img"
             width="200"
           />

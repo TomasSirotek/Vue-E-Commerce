@@ -146,9 +146,11 @@
 </template>
 
 <script>
-import { dbMenuAdd } from "../../firebase.js";
-/* import firebase from "firebase/compat/app"
-import "firebase/compat/storage"; */
+ /*  import {db} from "../../firebase.js";   */
+ import firebase from "firebase/compat/app"
+import "firebase/compat/storage"; 
+
+import 'firebase/compat/firestore';
 export default {
   data() {
     return {
@@ -158,8 +160,9 @@ export default {
       errorMsg: "",
       price: "",
       category: "",
-      error: null,
+      error: false,
       file: null,
+
     };
   },
   methods: {
@@ -169,26 +172,59 @@ export default {
         this.description !== "" &&
         this.count !== "" &&
         this.price !== "" &&
-        this.category !== "" &&
-        this.file !== null
+        this.category !== "" 
       ) {
-        this.error = false;
-        this.errorMsg = "";
+        if (this.file) {
+          const storageRef = firebase.storage().ref();
+          const docRef = storageRef.child(
+            `documents/ProductPhotos/${this.$store.state.productPhotoName}`
+          );
+          docRef.put(this.file).on(
+            "state_changed",
+            (snapshot) => {
+              console.log(snapshot);
+            },
+            (err) => {
+              console.log(err);
+            }, async () => {
+              const downloadURL = await docRef.getDownloadURL();
+              const timestamp = await Date.now();
+              const dataBase = await firebase.firestore().collection("menuItems").doc();
 
-        dbMenuAdd.add({
-          title: this.title,
-          snippet: this.description,
-          inStock: this.count,
-          price: this.price,
-          category: this.category,
-        });
-        this.reset();
-        console.log("added to db");
+              await dataBase.set({
+                gameId: dataBase.id,
+                title: this.title,
+                description: this.description, 
+                price: this.price,
+                category: this.category,
+                count: this.count,
+                imageCover: downloadURL,
+               /*  productPhotoName : this.productPhotoName, */
+                profileId: this.profileId,
+                date: timestamp,
+
+              })
+            
+            }
+          );
+          /* this.reset(); that is the problem xdd */ 
+          console.log("done to db");
+          return;
+
+        }
+        this.error = true;
+        this.errorMsg = "Upload file photo";
+        setTimeout(() => {
+          this.error = false;
+        }, 5000);
+
         return;
       }
-      this.errorMsg = "Fill all the field to add";
       this.error = true;
-      return;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
     },
     reset() {
       Object.assign(this.$data, this.$options.data.apply(this));
@@ -204,6 +240,10 @@ export default {
     productPictureName() {
       return this.$store.state.productPictureName;
     },
+    profileId(){
+      return this.$store.state.profileId;
+    }
+
   },
 };
 </script>

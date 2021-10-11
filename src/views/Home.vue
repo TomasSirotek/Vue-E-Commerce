@@ -27,6 +27,7 @@ export default {
   computed: {
     menuItems() {
       return this.$store.getters.getMenuItems;
+     
     },
   },
   beforeCreate() {
