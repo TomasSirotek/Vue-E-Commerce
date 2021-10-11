@@ -10,23 +10,20 @@
         <!-- Topbar -->
         <TopBar />
         <!-- End of Topbar -->
-       
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">Welcome to Product Customization</h1>
+          
         </div>
         <div>
-              <AddProduct
-              />
+          <AddProduct />
         </div>
-       
-        <!-- /.container-fluid -->
+
       </div>
 
-
       <!-- Footer -->
-     <FooterAdmin/>
+      <FooterAdmin />
       <!-- End of Footer -->
     </div>
     <!-- End of Content Wrapper -->
@@ -48,7 +45,6 @@ export default {
     FooterAdmin,
     AddProduct,
   },
-  
 };
 </script>
 
