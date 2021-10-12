@@ -4,15 +4,20 @@
       Welcome to Product Customization
     </h1>
     <div class="card o-hidden border-0 shadow-lg my-5">
-      <PreviewWindow/>
+      <PreviewWindow />
+
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
+
         <div class="row">
           <div class="col-lg-12">
+            <SuccessAlert v-show="success" />
             <div class="p-5">
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Add New Product</h1>
+                <SpinnerLoad v-show="loading" />
               </div>
+
               <div>
                 {{ this.errorMsg }}
               </div>
@@ -89,33 +94,31 @@
                 <span class="error" v-show="error">{{ this.errorMsg }}</span>
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
-                   <!--  <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="exampleInputPassword"
-                      placeholder="description"
-                      v-model="description"
-                    /> -->
-                    <vue-editor :editorOptions="editorSetting" v-model="descriptionHTML" useCustomImageEditor @image-added="imageHandler" />
+                    <vue-editor
+                      :editorOptions="editorSetting"
+                      v-model="descriptionHTML"
+                      useCustomImageEditor
+                      @image-added="imageHandler"
+                    />
                   </div>
                 </div>
                 <div class="form-group row ">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <b-button
                       class="btn btn-primary btn-user btn-block preview"
-                      :disabled=!this.$store.state.productPhotoFileUrl
+                      :disabled="!this.$store.state.productPhotoFileUrl"
                       v-b-modal.my-modal
                     >
                       Preview Photo
                     </b-button>
                   </div>
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                   <b-button
+                    <b-button
                       class="btn btn-primary btn-user btn-block"
                       @click="addProduct"
                     >
                       Add Product
-                     </b-button>
+                    </b-button>
                   </div>
                 </div>
               </form>
@@ -133,52 +136,56 @@
 import Quill from "quill";
 window.Quill = Quill;
 const ImageResize = require("quill-image-resize-module").default;
-Quill.register("modules/imageResize",ImageResize);
+Quill.register("modules/imageResize", ImageResize);
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import "firebase/compat/firestore";
-import PreviewWindow from "@/components/Admin/PreviewWindow.vue"
+import PreviewWindow from "@/components/Admin/PreviewWindow.vue";
+import SpinnerLoad from "@/components/Admin/Alerts/SpinnerLoad.vue";
+import SuccessAlert from "@/components/Admin/Alerts/SuccessAlert.vue";
 
 export default {
   name: "AddProductItem",
   components: {
     PreviewWindow,
+    SpinnerLoad,
+    SuccessAlert,
   },
   data() {
     return {
       title: "",
-      /* description: "", */
       count: "",
       errorMsg: "",
       price: "",
       subtitle: "",
       error: false,
       file: null,
-      category:"PC",
+      category: "PC",
       options: [
-          { item: 'PC', category: 'PC' },
-          { item: 'Xbox', category: 'Xbox' },
-          { item: 'PS4', category: 'PS4' },
-          { item: 'PS5', category: 'PS5' },
-        ],
-        editorSetting:{
-          modules:{
-            imageResize:{},
-          }
-        }
+        { item: "PC", category: "PC" },
+        { item: "Xbox", category: "Xbox" },
+        { item: "PS4", category: "PS4" },
+        { item: "PS5", category: "PS5" },
+      ],
+      editorSetting: {
+        modules: {
+          imageResize: {},
+        },
+      },
     };
   },
   methods: {
     addProduct() {
       if (
         this.title !== "" &&
-        this.descriptionHTML !== "" && 
+        this.descriptionHTML !== "" &&
         this.count !== "" &&
         this.price !== "" &&
         this.subtitle !== "" &&
         this.category !== ""
       ) {
         if (this.file) {
+          this.loading = true;
           const storageRef = firebase.storage().ref();
           const docRef = storageRef.child(
             `documents/ProductPhotos/${this.$store.state.productPhotoName}`
@@ -190,6 +197,7 @@ export default {
             },
             (err) => {
               console.log(err);
+              this.loading = false;
             },
             async () => {
               const downloadURL = await docRef.getDownloadURL();
@@ -212,11 +220,12 @@ export default {
                 profileId: this.profileId,
                 date: timestamp,
               });
+              this.reset();
+              this.descriptionHTML = "Write you desription";
+              this.loading = false;
+              this.success = true;
             }
           );
-          /* this.reset(); that is the problem xdd */
-
-          console.log("done to db");
           return;
         }
         this.error = true;
@@ -242,24 +251,24 @@ export default {
       this.$store.commit("fileNameChange", fileName);
       this.$store.commit("createFileURL", URL.createObjectURL(this.file));
     },
-    imageHandler(file,Editor,cursorLocation,resetUploader){
+    imageHandler(file, Editor, cursorLocation, resetUploader) {
       const storageRef = firebase.storage().ref();
       const docRef = storageRef.child(`documents/HtmlFiles/${file.name}`);
       docRef.put(file).on(
         "state_changed",
-        (snapshot) =>{
+        (snapshot) => {
           console.log(snapshot);
         },
         (err) => {
           console.log(err);
-        }, async () =>{
+        },
+        async () => {
           const downloadURL = await docRef.getDownloadURL();
-          Editor.insertEmbed(cursorLocation,"image",downloadURL);
+          Editor.insertEmbed(cursorLocation, "image", downloadURL);
           resetUploader();
         }
       );
-       
-  },
+    },
   },
   computed: {
     productPhotoName() {
@@ -268,14 +277,14 @@ export default {
     profileId() {
       return this.$store.state.profileId;
     },
-    descriptionHTML:{
-      get(){
+    descriptionHTML: {
+      get() {
         return this.$store.state.descriptionHTML;
       },
-      set(payload){
-        this.$store.commit("updateDesriptionHTML",payload)
-      }
-    }
+      set(payload) {
+        this.$store.commit("updateDesriptionHTML", payload);
+      },
+    },
   },
 };
 </script>
@@ -284,10 +293,10 @@ export default {
 #product-picture {
   display: none;
 }
-.category{
+.category {
   border-radius: 10rem;
 }
 
-.button-disabled{
+.button-disabled {
 }
 </style>
