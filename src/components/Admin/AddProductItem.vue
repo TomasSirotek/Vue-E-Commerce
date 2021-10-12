@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1 class="h3 mb-4 text-gray-800">
-            Welcome to Product Customization
-          </h1>
+      Welcome to Product Customization
+    </h1>
     <div class="card o-hidden border-0 shadow-lg my-5">
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
@@ -37,31 +37,32 @@
                     />
                   </div>
                   <div class="col-sm-4">
-                    <input
-                      type="text"
-                      class="form-control form-control-user"
-                      id="exampleLastName"
-                      placeholder="Category"
+                    <b-form-select
                       v-model="category"
-                    />
+                      :options="options"
+                      class="mb-3 category"
+                      value-field="item"
+                      text-field="category"
+                      disabled-field="notEnabled"
+                    ></b-form-select>
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <input
-                      type="text"
+                      type="number"
                       class="form-control form-control-user"
                       id="exampleInputPassword"
-                      placeholder="Count"
+                      placeholder="How many you want to add ?"
                       v-model="count"
                     />
                   </div>
                   <div class="col-sm-4">
                     <input
-                      type="text"
+                      type="number"
                       class="form-control form-control-user"
                       id="exampleRepeatPassword"
-                      placeholder="Price"
+                      placeholder="Price in USD"
                       v-model="price"
                     />
                   </div>
@@ -98,24 +99,20 @@
                 </div>
                 <div class="form-group row ">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <button
-                    disabled
+                    <b-button
                       class="btn btn-primary btn-user btn-block preview"
-                      :class="{
-                        'disabled': !this.$store.state
-                          .productPhotoFileUrl,
-                      }"
+                      :disabled=!this.$store.state.productPhotoFileUrl
                     >
                       Preview Photo
-                    </button>
+                    </b-button>
                   </div>
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <a
+                   <b-button
                       class="btn btn-primary btn-user btn-block"
                       @click="addProduct"
                     >
                       Add Product
-                    </a>
+                     </b-button>
                   </div>
                 </div>
               </form>
@@ -143,10 +140,16 @@ export default {
       count: "",
       errorMsg: "",
       price: "",
-      category: "",
       subtitle: "",
       error: false,
       file: null,
+      category:"PC",
+      options: [
+          { item: 'PC', category: 'PC' },
+          { item: 'Xbox', category: 'Xbox' },
+          { item: 'PS4', category: 'PS4' },
+          { item: 'PS5', category: 'PS5' },
+        ]
     };
   },
   methods: {
@@ -189,7 +192,7 @@ export default {
                 count: this.count,
                 subtitle: this.subtitle,
                 imageCover: downloadURL,
-                /*  productPhotoName : this.productPhotoName, */
+                productPhotoName: this.productPhotoName,
                 profileId: this.profileId,
                 date: timestamp,
               });
@@ -225,8 +228,8 @@ export default {
     },
   },
   computed: {
-    productPictureName() {
-      return this.$store.state.productPictureName;
+    productPhotoName() {
+      return this.$store.state.productPhotoName;
     },
     profileId() {
       return this.$store.state.profileId;
@@ -238,5 +241,11 @@ export default {
 <style lang="scss" scoped>
 #product-picture {
   display: none;
+}
+.category{
+  border-radius: 10rem;
+}
+
+.button-disabled{
 }
 </style>
