@@ -14,6 +14,7 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
+    descriptionHTML:"Your description of product write here",
     productPhotoFileUrl: null,
     productPhotoName: "",
     user: null,

@@ -32,7 +32,7 @@
                       type="text"
                       class="form-control form-control-user"
                       id="exampleLastName"
-                      placeholder="SubTitle"
+                      placeholder="Subtitle"
                       v-model="subtitle"
                     />
                   </div>
@@ -127,6 +127,8 @@
 </template>
 
 <script>
+import Quill from "quill";
+Window.Quill = Quill;
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import "firebase/compat/firestore";
