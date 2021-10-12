@@ -30,6 +30,11 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div v-html="product.descriptionHTML"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,6 +53,7 @@ export default {
      product() {
       return this.$store.getters.getProductById(this.$route.params.id);
     }, 
+    
   },
 };
 </script>

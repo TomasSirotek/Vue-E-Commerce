@@ -35,6 +35,9 @@ export default new Vuex.Store({
     createFileURL(state, payload) {
       state.productPhotoFileUrl = payload
     },
+    updateDesriptionHTML(state,payload){
+      state.descriptionHTML = payload
+    },
 
 
     addCheckoutItem: (state) => {

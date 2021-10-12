@@ -5,6 +5,9 @@ import router from './router'
 import store from './store'
 import '@/plugins/bootstrap-vue'
 import '@/assets/style.scss'
+import Vue2Editor from "vue2-editor"
+
+Vue.use(Vue2Editor);
 
 
 Vue.config.productionTip = false

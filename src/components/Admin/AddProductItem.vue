@@ -4,6 +4,7 @@
       Welcome to Product Customization
     </h1>
     <div class="card o-hidden border-0 shadow-lg my-5">
+      <PreviewWindow/>
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
         <div class="row">
@@ -80,7 +81,7 @@
                       @change="fileChange"
                     />
                     <span
-                      >Picture Chosen :
+                      >Picture you choose :
                       {{ this.$store.state.productPhotoName }}</span
                     >
                   </div>
@@ -88,13 +89,14 @@
                 <span class="error" v-show="error">{{ this.errorMsg }}</span>
                 <div class="form-group row">
                   <div class="col-sm-12 mb-3 mb-sm-0">
-                    <input
+                   <!--  <input
                       type="text"
                       class="form-control form-control-user"
                       id="exampleInputPassword"
                       placeholder="description"
                       v-model="description"
-                    />
+                    /> -->
+                    <vue-editor :editorOptions="editorSetting" v-model="descriptionHTML" useCustomImageEditor @image-added="imageHandler" />
                   </div>
                 </div>
                 <div class="form-group row ">
@@ -102,6 +104,7 @@
                     <b-button
                       class="btn btn-primary btn-user btn-block preview"
                       :disabled=!this.$store.state.productPhotoFileUrl
+                      v-b-modal.my-modal
                     >
                       Preview Photo
                     </b-button>
@@ -128,17 +131,23 @@
 
 <script>
 import Quill from "quill";
-Window.Quill = Quill;
+window.Quill = Quill;
+const ImageResize = require("quill-image-resize-module").default;
+Quill.register("modules/imageResize",ImageResize);
 import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import "firebase/compat/firestore";
+import PreviewWindow from "@/components/Admin/PreviewWindow.vue"
 
 export default {
   name: "AddProductItem",
+  components: {
+    PreviewWindow,
+  },
   data() {
     return {
       title: "",
-      description: "",
+      /* description: "", */
       count: "",
       errorMsg: "",
       price: "",
@@ -151,14 +160,19 @@ export default {
           { item: 'Xbox', category: 'Xbox' },
           { item: 'PS4', category: 'PS4' },
           { item: 'PS5', category: 'PS5' },
-        ]
+        ],
+        editorSetting:{
+          modules:{
+            imageResize:{},
+          }
+        }
     };
   },
   methods: {
     addProduct() {
       if (
         this.title !== "" &&
-        this.description !== "" &&
+        this.descriptionHTML !== "" && 
         this.count !== "" &&
         this.price !== "" &&
         this.subtitle !== "" &&
@@ -188,7 +202,7 @@ export default {
               await dataBase.set({
                 gameId: dataBase.id,
                 title: this.title,
-                description: this.description,
+                descriptionHTML: this.descriptionHTML,
                 price: this.price,
                 category: this.category,
                 count: this.count,
@@ -228,6 +242,24 @@ export default {
       this.$store.commit("fileNameChange", fileName);
       this.$store.commit("createFileURL", URL.createObjectURL(this.file));
     },
+    imageHandler(file,Editor,cursorLocation,resetUploader){
+      const storageRef = firebase.storage().ref();
+      const docRef = storageRef.child(`documents/HtmlFiles/${file.name}`);
+      docRef.put(file).on(
+        "state_changed",
+        (snapshot) =>{
+          console.log(snapshot);
+        },
+        (err) => {
+          console.log(err);
+        }, async () =>{
+          const downloadURL = await docRef.getDownloadURL();
+          Editor.insertEmbed(cursorLocation,"image",downloadURL);
+          resetUploader();
+        }
+      );
+       
+  },
   },
   computed: {
     productPhotoName() {
@@ -236,6 +268,14 @@ export default {
     profileId() {
       return this.$store.state.profileId;
     },
+    descriptionHTML:{
+      get(){
+        return this.$store.state.descriptionHTML;
+      },
+      set(payload){
+        this.$store.commit("updateDesriptionHTML",payload)
+      }
+    }
   },
 };
 </script>
