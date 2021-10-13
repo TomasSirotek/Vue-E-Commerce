@@ -14,6 +14,7 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
+    counter:0,
     collectionOfUsers: [],
     /*   productLoaded:null, */
     descriptionHTML: "Your description of product write here",
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     profileUserName: null,
     profileId: null,
     profileInitials: null,
+   
   },
   mutations: {
     updateUser(state, payload) {
@@ -51,7 +53,10 @@ export default new Vuex.Store({
     addCheckoutItem: (state) => {
 
       dbOrders.add({
-        orderNumber: 1,
+        archive:false,
+        storeOrders:false,
+        orderNumber:state.counter++,
+        status:"incomplete",
         orderFromUser: state.cart
       })
 
@@ -93,6 +98,40 @@ export default new Vuex.Store({
         state.orderItems = orderItems
 
       })
+    },
+    statusChange(state,id){
+      let selectedOrderItem = state.orderItems.filter(item => item.id === id)[0];
+      if(selectedOrderItem.status === "inprogress"){
+        dbOrders.doc(id).update({status:"complete"})
+        .then(()=>{
+          
+        })
+
+      }
+      else if(selectedOrderItem.status === "incomplete"){
+        dbOrders.doc(id).update({status:"inprogress"})
+        .then(()=>{
+
+        })
+
+      }
+      else if(selectedOrderItem.status === "complete"){
+        dbOrders.doc(id).update({status:"incomplete"})
+        .then(()=>{
+
+        })
+
+      }
+    },
+    archiveProducts(state,id){
+      let archiveItems = state.orderItems.filter(item => item.id ===id)[0];
+      if(archiveItems.archive === false && archiveItems.storeOrders === false){
+        dbOrders.doc(id).update({archive: true,storeOrders:true})
+      .then(()=>{
+
+      })
+      }
+      
     },
 
 
@@ -144,6 +183,9 @@ export default new Vuex.Store({
     filterProducts(state, payload) {
       state.menuItems = state.menuItems.filter(i => i.id !== payload)
     },
+    filterOrders(state, payload) {
+      state.menuItems = state.orderItems.filter(i => i.id !== payload)
+    },
   },
   actions: {
     setMenuItems: context => {
@@ -170,6 +212,11 @@ export default new Vuex.Store({
       const getProduct = await db.collection("menuItems").doc(payload);
       await getProduct.delete();
       commit("filterProducts", payload)
+    },
+    async deleteOrder({ commit }, payload) {
+      const getProduct = await db.collection("orderedItems").doc(payload);
+      await getProduct.delete();
+      commit("filterOrders", payload)
     },
     /* Redo */
     async updateChanges({ commit }, payload) {

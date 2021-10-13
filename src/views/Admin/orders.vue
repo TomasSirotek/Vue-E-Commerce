@@ -31,7 +31,9 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-               
+               <SoldTable
+            
+               />
                 </div>
               </div>
             </div>
@@ -53,6 +55,7 @@
 
 <script>
 
+import SoldTable from "@/components/Admin/SoldTable.vue";
 import SideBar from "@/components/Admin/SideBar.vue";
 import TopBar from "@/components/Admin/TopBar.vue";
 import FooterAdmin from "@/components/Admin/Footer.vue";
@@ -61,11 +64,12 @@ export default {
   name: "Orders",
   components: {
 
-
+    SoldTable,
     SideBar,
     TopBar,
     FooterAdmin,
   },
+   
 };
 </script>
 
