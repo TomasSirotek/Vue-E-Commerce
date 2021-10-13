@@ -25,15 +25,16 @@ export default {
 
   created() {
     firebase.auth().onAuthStateChanged((user) => {
-      this.$store.commit('updateUser',user);
-      if(user){
+      this.$store.commit("updateUser", user);
+      if (user) {
         this.$store.dispatch("getCurrentUser");
       }
-    })
+    });
     this.checkRoute();
   },
 
-  methods: {  // checker for routers navigation
+  methods: {
+    // checker for routers navigation
     checkRoute() {
       if (
         this.$route.name === "Login" ||
