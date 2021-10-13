@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" >
     <h1 class="h3 mb-4 text-gray-800">
       Welcome to Product Customization
     </h1>
@@ -13,14 +13,21 @@
           <div class="col-lg-12">
             <SuccessAlert v-show="success" />
             <div class="p-5">
+              <div class="text-right">
+                <p>
+                  Created on
+                  {{
+                    new Date(this.currentGame[0].date).toLocaleString("en-us", {
+                      dataStyles: "long",
+                    })
+                  }}
+                </p>
+                <p>Created by {{ this.$store.state.profileUserName }}</p>
+                <p>Role {{ this.$store.state.profileUserName }}</p>
+              </div>
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">Edit your product</h1>
                 <SpinnerLoad v-show="loading" />
-              </div>
-
-              <div>
-                {{ this.errorMsg }}
-
               </div>
 
               <form class="user">
@@ -31,7 +38,7 @@
                       class="form-control form-control-user"
                       id="exampleFirstName"
                       placeholder="Title"
-                      v-model="title"
+                      v-model="this.currentGame[0].title"
                     />
                   </div>
                   <div class="col-sm-4">
@@ -40,12 +47,12 @@
                       class="form-control form-control-user"
                       id="exampleLastName"
                       placeholder="Subtitle"
-                      v-model="subtitle"
+                      v-model="this.currentGame[0].subtitle"
                     />
                   </div>
                   <div class="col-sm-4">
                     <b-form-select
-                      v-model="category"
+                      v-model="this.currentGame[0].category"
                       :options="options"
                       class="mb-3 category"
                       value-field="item"
@@ -61,7 +68,7 @@
                       class="form-control form-control-user"
                       id="exampleInputPassword"
                       placeholder="How many you want to add ?"
-                      v-model="count"
+                      v-model="this.currentGame[0].count"
                     />
                   </div>
                   <div class="col-sm-4">
@@ -70,7 +77,7 @@
                       class="form-control form-control-user"
                       id="exampleRepeatPassword"
                       placeholder="Price in USD"
-                      v-model="price"
+                      v-model="this.currentGame[0].price"
                     />
                   </div>
                   <div class="col-sm-4">
@@ -124,14 +131,13 @@
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <b-button
                       class="btn btn-primary btn-user btn-block"
-                      @click="addProduct"
+                      @click="updateFB"
                     >
-                      Update changes 
+                      Update changes
                     </b-button>
                   </div>
                 </div>
               </form>
-
               <hr />
             </div>
           </div>
@@ -146,7 +152,7 @@ import Quill from "quill";
 window.Quill = Quill;
 const ImageResize = require("quill-image-resize-module").default;
 Quill.register("modules/imageResize", ImageResize);
-import firebase from "firebase/compat/app"; 
+import firebase from "firebase/compat/app";
 import "firebase/compat/storage";
 import "firebase/compat/firestore";
 import PreviewWindow from "@/components/Admin/PreviewWindow.vue";
@@ -166,13 +172,13 @@ export default {
       count: "",
       errorMsg: "",
       price: "",
-      loading:false,
-      success:false,
+      loading: false,
+      success: false,
       subtitle: "",
       error: false,
       file: null,
       category: "PC",
-      routeID:null,
+      routeID: null,
       currentGame: null,
       options: [
         { item: "PC", category: "PC" },
@@ -187,19 +193,44 @@ export default {
       },
     };
   },
-  async mounted(){
+  async mounted() {
     this.routeID = this.$route.params.gameid;
-    this.currentGame = await this.$store.state.menuItems.filter(item =>{
+    this.currentGame = await this.$store.state.menuItems.filter((item) => {
       return item.gameId === this.routeID;
     });
-    this.$store.commit('setGameState', this.currentGame[0])
+    this.$store.commit("setGameState", this.currentGame[0]);
   },
   methods: {
-    deleteProduct(id) {
-       this.$store.dispatch("deleteProduct", id);
-      
+    deleteProduct() {
+      this.boxOne = "";
+      this.$bvModal
+        .msgBoxConfirm("Please confirm that you want to delete everything.", {
+          title: "Please Confirm",
+          size: "sm",
+          buttonSize: "sm",
+          okVariant: "danger",
+          okTitle: "YES",
+          cancelTitle: "NO",
+          footerClass: "p-2",
+          hideHeaderClose: false,
+          centered: true,
+        })
+        .then((value) => {
+          this.boxOne = value;
+          if (value == true) {
+            this.$store.dispatch("deleteProduct", this.currentGame[0].gameId);
+            this.$router.push({ path: "/admin" });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
-     addProduct() {
+    async updateChanges() {
+      const dataBase = await firebase
+        .firestore()
+        .collection("menuItems")
+        .doc(this.routeID);
       if (
         this.title !== "" &&
         this.descriptionHTML !== "" &&
@@ -225,14 +256,8 @@ export default {
             },
             async () => {
               const downloadURL = await docRef.getDownloadURL();
-              const timestamp = await Date.now();
-              const dataBase = await firebase
-                .firestore()
-                .collection("menuItems")
-                .doc();
 
-              await dataBase.set({
-                gameId: dataBase.id,
+              await dataBase.update({
                 title: this.title,
                 descriptionHTML: this.descriptionHTML,
                 price: this.price,
@@ -241,23 +266,31 @@ export default {
                 subtitle: this.subtitle,
                 imageCover: downloadURL,
                 productPhotoName: this.productPhotoName,
-                profileId: this.profileId,
-                date: timestamp,
               });
+              await this.$store.dispatch("updateChanges", this.routeID);
               this.reset();
-              this.descriptionHTML = "Write you desription";
               this.loading = false;
               this.success = true;
             }
           );
           return;
         }
-        this.error = true;
-        this.errorMsg = "Upload file photo";
-        setTimeout(() => {
-          this.error = false;
-        }, 5000);
-
+        this.loading = true;
+        this.success = false;
+        await dataBase.update({
+          title: this.title,
+          descriptionHTML: this.descriptionHTML,
+          price: this.price,
+          category: this.category,
+          count: this.count,
+          subtitle: this.subtitle,
+          productPhotoName: this.productPhotoName,
+          profileId: this.profileId,
+        });
+        await this.$store.dispatch("updateChanges", this.routeID);
+        this.loading = false;
+        this.error = false;
+        this.success = true;
         return;
       }
       this.error = true;
@@ -265,7 +298,7 @@ export default {
       setTimeout(() => {
         this.error = false;
       }, 5000);
-    }, 
+    },
     reset() {
       Object.assign(this.$data, this.$options.data.apply(this));
     },
@@ -274,7 +307,7 @@ export default {
       const fileName = this.file.name;
       this.$store.commit("fileNameChange", fileName);
       this.$store.commit("createFileURL", URL.createObjectURL(this.file));
-    }, 
+    },
     imageHandler(file, Editor, cursorLocation, resetUploader) {
       const storageRef = firebase.storage().ref();
       const docRef = storageRef.child(`documents/HtmlFiles/${file.name}`);
@@ -292,7 +325,7 @@ export default {
           resetUploader();
         }
       );
-    }, 
+    },
   },
   computed: {
     productPhotoName() {

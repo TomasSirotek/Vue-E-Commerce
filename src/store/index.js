@@ -14,7 +14,8 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
-    descriptionHTML:"Your description of product write here",
+  /*   productLoaded:null, */
+    descriptionHTML: "Your description of product write here",
     productPhotoFileUrl: null,
     productPhotoName: "",
     user: null,
@@ -35,15 +36,14 @@ export default new Vuex.Store({
     createFileURL(state, payload) {
       state.productPhotoFileUrl = payload
     },
-    updateDesriptionHTML(state,payload){
+    updateDesriptionHTML(state, payload) {
       state.descriptionHTML = payload
     },
-    setGameState(state,payload){
-      state.menuItems = payload.title,
-      state.descriptionHTML = payload.descriptionHTML,
-      state.productPhotoFileUrl = payload.imageCover,
-      state.productPhotoName = payload.productPhotoName
-    
+    setGameState(state, payload) {
+        state.descriptionHTML = payload.descriptionHTML,
+        state.productPhotoFileUrl = payload.imageCover,
+        state.productPhotoName = payload.productPhotoName
+
     },
 
 
@@ -63,17 +63,17 @@ export default new Vuex.Store({
 
         snapshotItems.forEach((doc) => {
           var menuItemData = doc.data()
-          console.log(doc.data())
+         /*  console.log(doc.data()) */
           menuItems.push({
             ...menuItemData,
             id: doc.id,
           })
         })
-        state.menuItems = menuItems
+       /*  state.productLoaded = true */
+        state.menuItems = menuItems 
+        console.log(state.menuItems)
       })
     },
-
-    // Work on adding to database dbOrders []
     setOrderItems: state => {
 
       let orderItems = []
@@ -88,7 +88,9 @@ export default new Vuex.Store({
             id: doc.id,
           })
         })
+
         state.orderItems = orderItems
+
       })
     },
 
@@ -148,6 +150,7 @@ export default new Vuex.Store({
   actions: {
     setMenuItems: context => {
       context.commit('setMenuItems')
+
     },
     setOrderItems: (context) => {
       context.commit('setOrderItems')
@@ -168,11 +171,11 @@ export default new Vuex.Store({
       commit("filterProducts", payload)
     },
     /* Redo */
-    /*  async updateFb({ commit },payload){
-       const updateProduct = await db.collection("menuItems").doc(payload);
-       await updateProduct.update();
+     async updateChanges({ commit },payload){
+       
        commit("updateProducts",payload)
-     }, */
+       await this.dispatch("setMenuItems")
+     }, 
 
   },
   getters: {
