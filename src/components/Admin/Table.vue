@@ -13,29 +13,33 @@
             width="100%"
             cellspacing="0"
           >
-            <thead >
-              <tr >
+            <thead>
+              <tr>
                 <th>Title</th>
+                <th>Subtitle</th>
                 <th>Category</th>
-                <th>On sale</th>
+
                 <th>Price</th>
-            
+
                 <th>In stock</th>
+                <th>Make changes</th>
               </tr>
             </thead>
-            <tbody v-for="item in menuItems " :key="item.id">
+            <tbody v-for="item in menuItems" :key="item.id">
               <tr>
-                <td> {{ item.title}}</td>
-                <td>{{ item.category}}</td>
-                <td>{{ item.onSale}}</td>
-                <td>${{ item.price}}</td>
-                <td>{{ item.inStock}}x</td>
+                <td>{{ item.title }}</td>
+                <td>{{ item.subtitle }}</td>
+                <td>{{ item.category }}</td>
+
+                <td>${{ item.price }}</td>
+                <td>{{ item.count }}x</td>
+                <td><!-- <a class="btn btn-primary btn-user btn-block"  @click="updateChanges(item),modalShow=true">Edit</a> -->
+                <b-button  :to="{name:'EditProduct', params:{gameid: item.gameId}}"  >Edit</b-button>
+                </td>
               </tr>
             </tbody>
           </table>
-          <div >
-             
-          </div>
+          <div></div>
         </div>
       </div>
     </div>
@@ -44,7 +48,6 @@
 
 <script>
 export default {
-
   name: "table",
   computed: {
     menuItems() {
@@ -54,6 +57,9 @@ export default {
   beforeCreate() {
     this.$store.dispatch("setMenuItems");
   },
+methods: {
+
+}
 };
 </script>
 

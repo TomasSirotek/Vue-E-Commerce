@@ -45,7 +45,7 @@
           aria-controls="collapseTwo"
         >
           <i class="fas fa-fw fa-cog"></i>
-          <span>Product Customization</span>
+          <span>Add Product</span>
         </a>
       </li>
 
@@ -83,17 +83,6 @@
         >
           <i class="fas fa-fw fa-cog"></i>
           <span>Profile</span>
-        </a>
-        <a
-          class="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseTwo"
-          aria-expanded="true"
-          aria-controls="collapseTwo"
-        >
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Setting</span>
         </a>
         <a
           class="nav-link collapsed"

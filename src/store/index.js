@@ -38,6 +38,13 @@ export default new Vuex.Store({
     updateDesriptionHTML(state,payload){
       state.descriptionHTML = payload
     },
+    setGameState(state,payload){
+      state.menuItems = payload.title,
+      state.descriptionHTML = payload.descriptionHTML,
+      state.productPhotoFileUrl = payload.imageCover,
+      state.productPhotoName = payload.productPhotoName
+    
+    },
 
 
     addCheckoutItem: (state) => {

@@ -1,12 +1,12 @@
 <template>
   <div>
-    <b-alert variant="success" show>Success Alert</b-alert>
+    <b-alert variant="success" show>Successfully added !</b-alert>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Success Alert",
+  name: "SuccessAlert",
   data() {
     return {};
   },

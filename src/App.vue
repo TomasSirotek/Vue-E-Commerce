@@ -37,6 +37,7 @@ export default {
     checkRoute() {
       if (
         this.$route.name === "Login" ||
+        this.$route.name === "EditProduct" ||
         this.$route.name === "Register" ||
         this.$route.name === "Admin" ||
         this.$route.name === "ProductCustom" ||
