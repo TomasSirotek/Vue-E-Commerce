@@ -14,7 +14,8 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
-  /*   productLoaded:null, */
+    collectionOfUsers: [],
+    /*   productLoaded:null, */
     descriptionHTML: "Your description of product write here",
     productPhotoFileUrl: null,
     productPhotoName: "",
@@ -40,7 +41,7 @@ export default new Vuex.Store({
       state.descriptionHTML = payload
     },
     setGameState(state, payload) {
-        state.descriptionHTML = payload.descriptionHTML,
+      state.descriptionHTML = payload.descriptionHTML,
         state.productPhotoFileUrl = payload.imageCover,
         state.productPhotoName = payload.productPhotoName
 
@@ -63,14 +64,14 @@ export default new Vuex.Store({
 
         snapshotItems.forEach((doc) => {
           var menuItemData = doc.data()
-         /*  console.log(doc.data()) */
+          /*  console.log(doc.data()) */
           menuItems.push({
             ...menuItemData,
             id: doc.id,
           })
         })
-       /*  state.productLoaded = true */
-        state.menuItems = menuItems 
+        /*  state.productLoaded = true */
+        state.menuItems = menuItems
         console.log(state.menuItems)
       })
     },
@@ -133,6 +134,7 @@ export default new Vuex.Store({
         state.profileFirstName.match(/(\b\S)?/g).join("") +
         state.profileLastName.match(/(\b\S)?/g).join("");
     },
+
     updateCartFromLocalStorage(state) {
       const cart = localStorage.getItem('cart')
       if (cart) {
@@ -142,10 +144,6 @@ export default new Vuex.Store({
     filterProducts(state, payload) {
       state.menuItems = state.menuItems.filter(i => i.id !== payload)
     },
-    /*   updateProducts(state,payload){
-        state.menuItems = payload.title
-      },   Redo */
-
   },
   actions: {
     setMenuItems: context => {
@@ -164,25 +162,27 @@ export default new Vuex.Store({
       const dbFinal = await dataBase.get();
       commit("setProfileDetails", dbFinal);
       commit("setProfileInitials")
-    }, // deletation make
+    },
+
+
+
     async deleteProduct({ commit }, payload) {
       const getProduct = await db.collection("menuItems").doc(payload);
       await getProduct.delete();
       commit("filterProducts", payload)
     },
     /* Redo */
-     async updateChanges({ commit },payload){
-       
-       commit("updateProducts",payload)
-       await this.dispatch("setMenuItems")
-     }, 
+    async updateChanges({ commit }, payload) {
+
+      commit("updateProducts", payload)
+      await this.dispatch("setMenuItems")
+    },
 
   },
   getters: {
     getMenuItems: state => state.menuItems,
     getOrderItems: state => state.orderItems,
     user: (state) => state.user,
-    // add getter for current orders 
 
     getProductById: (state) => (id) => {
       return state.menuItems.find(menuItem => menuItem.id == id)

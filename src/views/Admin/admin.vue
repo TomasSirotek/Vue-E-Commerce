@@ -188,7 +188,7 @@ import TopBar from "@/components/Admin/TopBar.vue";
 import FooterAdmin from "@/components/Admin/Footer.vue";
 
 export default {
-  name: "admin",
+  name: "Users",
   components: {
     Table,
 

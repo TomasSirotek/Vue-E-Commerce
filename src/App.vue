@@ -31,6 +31,7 @@ export default {
       }
     });
     this.checkRoute();
+
   },
 
   methods: {
@@ -39,6 +40,7 @@ export default {
       if (
         this.$route.name === "Login" ||
         this.$route.name === "EditProduct" ||
+        this.$route.name === "Orders" ||
         this.$route.name === "Register" ||
         this.$route.name === "Admin" ||
         this.$route.name === "ProductCustom" ||
