@@ -34,6 +34,7 @@
                <SoldTable
             
                />
+               
                 </div>
               </div>
             </div>
@@ -69,6 +70,7 @@ export default {
     TopBar,
     FooterAdmin,
   },
+  
    
 };
 </script>
