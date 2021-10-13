@@ -13,6 +13,8 @@
         <TopBar />
         <!-- End of Topbar -->
 
+        <Archived />
+
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
@@ -31,14 +33,10 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-               <SoldTable
-            
-               />
-               
+                  <SoldTable />
                 </div>
               </div>
             </div>
-
           </div>
 
           <!-- Content Row -->
@@ -55,23 +53,21 @@
 </template>
 
 <script>
-
 import SoldTable from "@/components/Admin/SoldTable.vue";
 import SideBar from "@/components/Admin/SideBar.vue";
 import TopBar from "@/components/Admin/TopBar.vue";
 import FooterAdmin from "@/components/Admin/Footer.vue";
+import Archived from "@/components/Admin/Overview/Archived.vue";
 
 export default {
   name: "Orders",
   components: {
-
+    Archived,
     SoldTable,
     SideBar,
     TopBar,
     FooterAdmin,
   },
-  
-   
 };
 </script>
 
