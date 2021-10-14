@@ -4,7 +4,7 @@
       <div class="col-lg-5 col-md-5 text-center">
         <div class="img-product">
           <img
-            src="@/assets/images/game-gta.jpg"
+            :src="product.imageCover"
             alt="product-img"
             width="200"
           />
@@ -30,6 +30,11 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div v-html="product.descriptionHTML"></div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,6 +53,7 @@ export default {
      product() {
       return this.$store.getters.getProductById(this.$route.params.id);
     }, 
+    
   },
 };
 </script>

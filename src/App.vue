@@ -25,20 +25,26 @@ export default {
 
   created() {
     firebase.auth().onAuthStateChanged((user) => {
-      this.$store.commit('updateUser',user);
-      if(user){
+      this.$store.commit("updateUser", user);
+      if (user) {
         this.$store.dispatch("getCurrentUser");
       }
-    })
+    });
     this.checkRoute();
+
   },
 
-  methods: {  // checker for routers navigation
+  methods: {
+    // checker for routers navigation
     checkRoute() {
       if (
         this.$route.name === "Login" ||
+        this.$route.name === "EditProduct" ||
+        this.$route.name === "orders" ||
         this.$route.name === "Register" ||
         this.$route.name === "Admin" ||
+        this.$route.name === "AddAdmin" ||
+        this.$route.name === "ProductCustom" ||
         this.$route.name === "PasswordReset"
       ) {
         this.noNav = true;

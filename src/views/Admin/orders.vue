@@ -6,22 +6,17 @@
         <TopBar />
         <div class="container-fluid">
           <div class="row">
-            <Earnings />
-            <CompletedOrders />
-            <ProductsShop />
-          </div>
-          <div class="row">
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
                 <div
                   class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
                 >
                   <h6 class="m-0 font-weight-bold text-primary">
-                    Products in Shop
+                    Preview
                   </h6>
                 </div>
                 <div class="card-body">
-                  <Table />
+                  <SoldTable />
                 </div>
               </div>
             </div>
@@ -30,27 +25,19 @@
       </div>
       <FooterAdmin />
     </div>
-     <router-view></router-view>
   </div>
- 
 </template>
 
 <script>
-import Table from "@/components/Admin/Table.vue";
-import CompletedOrders from "@/components/Admin/Overview/CompletedOrders.vue";
-import ProductsShop from "@/components/Admin/Overview/ProductsShop.vue";
+import SoldTable from "@/components/Admin/SoldTable.vue";
 import SideBar from "@/components/Admin/SideBar.vue";
 import TopBar from "@/components/Admin/TopBar.vue";
 import FooterAdmin from "@/components/Admin/Footer.vue";
-import Earnings from "@/components/Admin/Overview/Earnings.vue";
 
 export default {
-  name: "Admin",
+  name: "Orders",
   components: {
-    Table,
-    Earnings,
-    CompletedOrders,
-    ProductsShop,
+    SoldTable,
     SideBar,
     TopBar,
     FooterAdmin,

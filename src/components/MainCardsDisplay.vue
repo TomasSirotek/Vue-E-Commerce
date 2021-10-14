@@ -2,7 +2,7 @@
  <router-link :to="`/products/${cardsSection.id}`">
   <div class="col align-self-center">
     <div class="card" style="width:15rem;">
-      <img src="@/assets/images/game-gta.jpg" class="card-img-top" alt="..." />
+      <img :src="cardsSection.imageCover" class="card-img-top" alt="..." />
       <div class="card-body">
         <h5 class="card-title">{{ cardsSection.title }}</h5>
         <p class="card-text">{{ cardsSection.snippet }}</p>
@@ -19,6 +19,9 @@ export default {
   name: "MainCardsDisplay",
   components: {
   },
+  computed: {
+   
+  }
  
   
 };
