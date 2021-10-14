@@ -80,8 +80,7 @@
 export default {
   name: "SoldTable",
   data() {
-    return {
-    };
+    return {};
   },
   computed: {
     all() {
@@ -96,37 +95,37 @@ export default {
       this.$store.commit("statusChange", id);
     },
     archiveProducts(id) {
-     
-        this.boxTwo = "";
+      this.boxTwo = "";
       this.$bvModal
-        .msgBoxConfirm("Please confirm that you want to Archive this ordered.", {
-          title: "Please Confirm",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "danger",
-          okTitle: "YES",
-          cancelTitle: "NO",
-          footerClass: "p-2",
-          hideHeaderClose: false,
-          centered: true,
-        })
+        .msgBoxConfirm(
+          "Please confirm that you want to Archive this ordered.",
+          {
+            title: "Please Confirm",
+            size: "sm",
+            buttonSize: "sm",
+            okVariant: "danger",
+            okTitle: "YES",
+            cancelTitle: "NO",
+            footerClass: "p-2",
+            hideHeaderClose: false,
+            centered: true,
+          }
+        )
         .then((value) => {
           this.boxTwo = value;
           if (value == true) {
-             this.$store.commit("archiveProducts", id);
-                this.boxThree = ''
-        this.$bvModal.msgBoxOk('Your product was archived')
-          .then(value => {
-            this.boxThree = value
-          })
-          .catch(err => {
-            console.log(err)
-          })
+            this.$store.commit("archiveProducts", id);
+            this.boxThree = "";
+            this.$bvModal
+              .msgBoxOk("Your product was archived")
+              .then((value) => {
+                this.boxThree = value;
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           }
-       
-        })
-
-     
+        });
     },
     deleteOrder(id) {
       this.boxOne = "";

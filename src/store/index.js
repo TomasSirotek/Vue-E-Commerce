@@ -14,6 +14,7 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
+    archivedItems:[],
     counter:0,
     collectionOfUsers: [],
     /*   productLoaded:null, */
@@ -128,7 +129,7 @@ export default new Vuex.Store({
       if(archiveItems.archive === false && archiveItems.storeOrders === false){
         dbOrders.doc(id).update({archive: true,storeOrders:true})
       .then(()=>{
-
+        state.archivedItems.push()
       })
       }
       
@@ -244,7 +245,19 @@ export default new Vuex.Store({
     tottal: state => {
       return state.cart.reduce((a, b) => a + b.quantity, 0);
     },
-
+    earnings_total:  state => {
+      let totalIncome = 0
+      state.orderItems.forEach(a => {
+        if(a.archive == true){
+          a.orderFromUser.forEach(b =>{
+            totalIncome += b.price * b.quantity
+          })
+        }
+      });
+      console.log(totalIncome)
+      return totalIncome;
+    },
+  
   },
 
 

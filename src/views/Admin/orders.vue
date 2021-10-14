@@ -1,54 +1,30 @@
 <template>
-  <!-- Page Wrapper -->
   <div id="wrapper">
-    <!-- Sidebar -->
     <SideBar />
-    <!-- End of Sidebar -->
-
-    <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-      <!-- Main Content -->
       <div id="content">
-        <!-- Topbar -->
         <TopBar />
-        <!-- End of Topbar -->
-
-        <Archived />
-
-        <!-- Begin Page Content -->
         <div class="container-fluid">
-          <!-- Page Heading -->
-
           <div class="row">
-            <!-- Area Chart -->
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
                 <div
                   class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
                 >
                   <h6 class="m-0 font-weight-bold text-primary">
-                    Your current orders
+                    Preview
                   </h6>
                 </div>
-                <!-- Card Body -->
                 <div class="card-body">
                   <SoldTable />
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Content Row -->
         </div>
       </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
       <FooterAdmin />
-      <!-- End of Footer -->
     </div>
-    <!-- End of Content Wrapper -->
   </div>
 </template>
 
@@ -57,12 +33,10 @@ import SoldTable from "@/components/Admin/SoldTable.vue";
 import SideBar from "@/components/Admin/SideBar.vue";
 import TopBar from "@/components/Admin/TopBar.vue";
 import FooterAdmin from "@/components/Admin/Footer.vue";
-import Archived from "@/components/Admin/Overview/Archived.vue";
 
 export default {
   name: "Orders",
   components: {
-    Archived,
     SoldTable,
     SideBar,
     TopBar,
