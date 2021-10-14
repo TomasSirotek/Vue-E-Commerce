@@ -47,7 +47,6 @@
                       v-model="category"
                       :options="options"
                       class="mb-3 category"
-                      value-field="item"
                       text-field="category"
                       disabled-field="notEnabled"
                     ></b-form-select>

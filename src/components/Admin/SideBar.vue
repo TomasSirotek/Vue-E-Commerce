@@ -41,6 +41,10 @@
         <i> <font-awesome-icon icon="id-card" /></i>
         <span>Profile</span>
       </a>
+      <a class="nav-link" href="/admin/addAdmin">
+        <i> <font-awesome-icon icon="user-plus" /></i>
+        <span>Add Admin</span>
+      </a>
       <a class="nav-link" href="#">
         <i> <font-awesome-icon icon="sign-out-alt" /></i>
         <span>Log out</span>

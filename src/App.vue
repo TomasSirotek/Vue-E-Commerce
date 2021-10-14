@@ -40,9 +40,10 @@ export default {
       if (
         this.$route.name === "Login" ||
         this.$route.name === "EditProduct" ||
-        this.$route.name === "Orders" ||
+        this.$route.name === "orders" ||
         this.$route.name === "Register" ||
         this.$route.name === "Admin" ||
+        this.$route.name === "AddAdmin" ||
         this.$route.name === "ProductCustom" ||
         this.$route.name === "PasswordReset"
       ) {

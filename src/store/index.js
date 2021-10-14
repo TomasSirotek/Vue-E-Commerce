@@ -14,8 +14,8 @@ export default new Vuex.Store({
     menuItems: [],
     cart: [],
     orderItems: [],
-    archivedItems:[],
-    counter:0,
+    archivedItems: [],
+    counter: 1,
     collectionOfUsers: [],
     /*   productLoaded:null, */
     descriptionHTML: "Your description of product write here",
@@ -28,7 +28,7 @@ export default new Vuex.Store({
     profileUserName: null,
     profileId: null,
     profileInitials: null,
-   
+
   },
   mutations: {
     updateUser(state, payload) {
@@ -54,10 +54,10 @@ export default new Vuex.Store({
     addCheckoutItem: (state) => {
 
       dbOrders.add({
-        archive:false,
-        storeOrders:false,
-        orderNumber:state.counter++,
-        status:"incomplete",
+        archive: false,
+        storeOrders: false,
+        orderNumber: state.counter++,
+        status: "incomplete",
         orderFromUser: state.cart
       })
 
@@ -100,39 +100,39 @@ export default new Vuex.Store({
 
       })
     },
-    statusChange(state,id){
+    statusChange(state, id) {
       let selectedOrderItem = state.orderItems.filter(item => item.id === id)[0];
-      if(selectedOrderItem.status === "inprogress"){
-        dbOrders.doc(id).update({status:"complete"})
-        .then(()=>{
-          
-        })
+      if (selectedOrderItem.status === "inprogress") {
+        dbOrders.doc(id).update({ status: "complete" })
+          .then(() => {
+
+          })
 
       }
-      else if(selectedOrderItem.status === "incomplete"){
-        dbOrders.doc(id).update({status:"inprogress"})
-        .then(()=>{
+      else if (selectedOrderItem.status === "incomplete") {
+        dbOrders.doc(id).update({ status: "inprogress" })
+          .then(() => {
 
-        })
+          })
 
       }
-      else if(selectedOrderItem.status === "complete"){
-        dbOrders.doc(id).update({status:"incomplete"})
-        .then(()=>{
+      else if (selectedOrderItem.status === "complete") {
+        dbOrders.doc(id).update({ status: "incomplete" })
+          .then(() => {
 
-        })
+          })
 
       }
     },
-    archiveProducts(state,id){
-      let archiveItems = state.orderItems.filter(item => item.id ===id)[0];
-      if(archiveItems.archive === false && archiveItems.storeOrders === false){
-        dbOrders.doc(id).update({archive: true,storeOrders:true})
-      .then(()=>{
-        state.archivedItems.push()
-      })
+    archiveProducts(state, id) {
+      let archiveItems = state.orderItems.filter(item => item.id === id)[0];
+      if (archiveItems.archive === false && archiveItems.storeOrders === false) {
+        dbOrders.doc(id).update({ archive: true, storeOrders: true })
+          .then(() => {
+            state.archivedItems.push()
+          })
       }
-      
+
     },
 
 
@@ -245,11 +245,11 @@ export default new Vuex.Store({
     tottal: state => {
       return state.cart.reduce((a, b) => a + b.quantity, 0);
     },
-    earnings_total:  state => {
+    earnings_total: state => {
       let totalIncome = 0
       state.orderItems.forEach(a => {
-        if(a.archive == true){
-          a.orderFromUser.forEach(b =>{
+        if (a.archive == true) {
+          a.orderFromUser.forEach(b => {
             totalIncome += b.price * b.quantity
           })
         }
@@ -257,7 +257,7 @@ export default new Vuex.Store({
       console.log(totalIncome)
       return totalIncome;
     },
-  
+
   },
 
 

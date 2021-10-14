@@ -28,11 +28,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "admin" */ '../views/Admin/admin.vue')
+    component: () => import(/* webpackChunkName: "admin" */ '../views/Admin/admin.vue'),
+
   },
   {
     path: '/admin/orders',
-    name: 'Orders',
+    name: 'orders',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -45,6 +46,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "productCustom" */ '../views/Admin/productCustom.vue')
+  },
+  {
+    path: '/admin/addAdmin',
+    name: 'AddAdmin',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "addAdmin" */ '../views/Admin/AddAdmin.vue')
   },
   {
     path: '/cart',
@@ -85,18 +94,18 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component:Products
+    component: Products
   },
   {
     path: '/products/:id',
     name: 'productDetails',
     component: ProductDetails
- },
+  },
   {
     path: '/EditProduct/:gameid',
     name: 'EditProduct',
     component: EditProduct
- }
+  }
 ]
 
 const router = new VueRouter({
