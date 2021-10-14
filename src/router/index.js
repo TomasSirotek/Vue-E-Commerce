@@ -4,8 +4,7 @@ import Home from '../views/Home.vue'
 import ProductDetails from '../views/products/productDetails.vue'
 import Products from '../views/products/Products.vue'
 import EditProduct from '../views/products/EditProduct.vue'
-import "firebase/auth";
-import firebase from 'firebase/compat/app'
+
 
 
 Vue.use(VueRouter)
@@ -167,26 +166,5 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach(async (to,from, next) => {
-  let user = firebase.auth().currentUser;
-  let admin = 0;
-  if (user){
-    let token = await user.getIdTokenResult();
-    admin = token.claims.admin
-  }
-  if (to.matched.some((res) => res.meta.requiresAuth)){
-    if(user){
-      if(to.matched.some((res) => res.meta.requiresAdmin)){
-        if(admin){
-          return next()
-        }
-          return next ({ name:"Home"});
-      }
-      return next();
-    }
-    return next ({ name:"Home"});
-  }
-  return next()
-})
 
 export default router

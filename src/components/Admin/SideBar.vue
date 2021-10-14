@@ -37,15 +37,8 @@
     <div class="sidebar-heading">Options</div>
 
     <li class="nav-item">
-      <a class="nav-link" href="#">
-        <i> <font-awesome-icon icon="id-card" /></i>
-        <span>Profile</span>
-      </a>
-      <a class="nav-link" href="/admin/addAdmin">
-        <i> <font-awesome-icon icon="user-plus" /></i>
-        <span>Add Admin</span>
-      </a>
-      <a class="nav-link" href="#">
+    
+     <a class="nav-link" @click="logOut" >
         <i> <font-awesome-icon icon="sign-out-alt" /></i>
         <span>Log out</span>
       </a>
@@ -54,8 +47,19 @@
 </template>
 
 <script>
-export default {};
+import firebase from "firebase/compat";
+export default {
+  methods:{
+    logOut() {
+      firebase.auth().signOut();
+      this.$router.push({ path: "/" });
+    },
+  }
+};
 </script>
 
 <style lang="scss" scoped>
+a {
+  cursor: pointer;
+}
 </style>
