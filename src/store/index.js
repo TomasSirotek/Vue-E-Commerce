@@ -117,6 +117,10 @@ export default new Vuex.Store({
       if (cart) {
         state.cart = JSON.parse(cart)
       }
+    },
+    emptyCart(state){
+      state.cart = [],
+      updateLocalStorage(state.cart)
     }
   },
   actions: {
@@ -129,6 +133,7 @@ export default new Vuex.Store({
     // Setting from db 
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
+     
     }, // Auth here 
     async getCurrentUser({commit}){
       const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid);
@@ -136,6 +141,9 @@ export default new Vuex.Store({
       commit("setProfileDetails",dbFinal);
       commit("setProfileInitials")
     },
+    emptyCart({ commit}){
+      commit("emptyCart")
+    }
   
   },
   getters: { 
