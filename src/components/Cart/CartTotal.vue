@@ -43,10 +43,7 @@ export default {
   },
 
   methods: {
-    addCheckoutItem() {
-      this.$store.dispatch("setCheckoutItem");
 
-  methods: { // Add some modal
     addCheckoutItem() {
       this.orderDone = true;
       this.$store.dispatch("setCheckoutItem");

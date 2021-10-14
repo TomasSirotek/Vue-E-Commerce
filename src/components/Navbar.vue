@@ -50,8 +50,7 @@ export default {
     logOut() {
       firebase.auth().signOut();
 
-      this.$router.push({ path: "/login" });
-=======
+      this.$router.push({ path: "/login" });       
       window.location.reload() 
       this.$router.push({ path: "/" });
 
