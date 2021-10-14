@@ -1,9 +1,5 @@
 <template>
   <div class="table">
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">All Products</h1>
-
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
       <div class="card-body">
         <div class="table-responsive">
@@ -33,8 +29,14 @@
 
                 <td>${{ item.price }}</td>
                 <td>{{ item.count }}x</td>
-                <td><!-- <a class="btn btn-primary btn-user btn-block"  @click="updateChanges(item),modalShow=true">Edit</a> -->
-                <b-button  :to="{name:'EditProduct', params:{gameid: item.gameId}}"  >Edit</b-button>
+                <td>
+                  <b-button
+                    :to="{
+                      name: 'EditProduct',
+                      params: { gameid: item.gameId },
+                    }"
+                    > <font-awesome-icon icon="edit" /></b-button
+                  >
                 </td>
               </tr>
             </tbody>
@@ -57,9 +59,7 @@ export default {
   beforeCreate() {
     this.$store.dispatch("setMenuItems");
   },
-methods: {
-
-}
+  methods: {},
 };
 </script>
 
