@@ -26,6 +26,7 @@
 
     <li class="nav-item">
       <a class="nav-link" href="/admin/orders">
+       
         <i> <font-awesome-icon icon="folder-open" /></i>
 
         <span>Orders</span>

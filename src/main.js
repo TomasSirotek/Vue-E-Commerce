@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/plugins/bootstrap-vue'
 import '@/assets/style.scss'
 import Vue2Editor from "vue2-editor"
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth';
 
 
 
@@ -19,8 +21,15 @@ Vue.use(Vue2Editor);
 
 Vue.config.productionTip = false
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+let app;
+firebase.auth().onAuthStateChanged(user=>{
+  console.log(user);
+  if(!app){
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})
+

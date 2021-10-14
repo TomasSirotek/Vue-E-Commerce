@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <h2>All products </h2>
-<!--         Component off all 
- -->    </div>
+<div>
+</div>
+
 </template>
 
 <script>

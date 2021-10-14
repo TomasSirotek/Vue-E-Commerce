@@ -30,6 +30,7 @@
       </div>
       <FooterAdmin />
     </div>
+     <router-view></router-view>
   </div>
  
 </template>
