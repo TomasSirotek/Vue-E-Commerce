@@ -17,7 +17,10 @@
             </template>
             <b-dropdown-item to="/about">Profile <span>{{ this.$store.state.profileInitials}}</span> </b-dropdown-item>
             <b-dropdown-item to="/products">All products</b-dropdown-item>
+
             <b-dropdown-item to="/admin">Admin</b-dropdown-item>
+
+
             <b-dropdown-item v-if="user" @click="logOut" >LogOut</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
@@ -46,7 +49,12 @@ export default {
   methods: {
     logOut() {
       firebase.auth().signOut();
+
       this.$router.push({ path: "/login" });
+=======
+      window.location.reload() 
+      this.$router.push({ path: "/" });
+
     },
   }
 };
