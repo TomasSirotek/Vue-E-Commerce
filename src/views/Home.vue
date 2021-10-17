@@ -1,9 +1,13 @@
 <template>
   <div class="front-side">
     <Hero />
-    <div class="container py-3">
-      <h2> On Sale </h2>
-      <div class="row">
+    <div class="container py-4">
+      <div class="line-bottom heading-text">
+        <h1 class="main_title"><span>Recent Products</span></h1>
+      </div>
+
+      <div class="row mt-4">
+        
         <MainCardsDisplay
           v-for="item in menuItems"
           :key="item.id"
@@ -27,12 +31,10 @@ export default {
   computed: {
     menuItems() {
       return this.$store.getters.getMenuItems;
-     
     },
   },
   beforeCreate() {
     this.$store.dispatch("setMenuItems");
   },
-  
 };
 </script>

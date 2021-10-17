@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <TopMenu />
     <Nav-bar v-if="!noNav"></Nav-bar>
     <router-view />
   </div>
@@ -7,12 +8,15 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import TopMenu from "@/components/TopMenu.vue";
+
 import firebase from "firebase/compat";
 import "firebase/compat/auth";
 import "firebase/firestore";
 export default {
   components: {
     "Nav-bar": Navbar,
+    TopMenu
   },
   data() {
     return {
@@ -31,7 +35,6 @@ export default {
       }
     });
     this.checkRoute();
-
   },
 
   methods: {
@@ -67,20 +70,8 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  margin: 0;
+  padding: 0;
+  background:#ececec;
 }
 </style>

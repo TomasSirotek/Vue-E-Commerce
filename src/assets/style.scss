@@ -1,10 +1,25 @@
 @import "./admin.scss";
+@import "./variables.scss";
 
-
-.home{
-    min-height: 40vh;
+/* .home{
+    min-height: 50vh;
     padding: 50px 0 ;
-    background:linear-gradient(#FF4858,#8F65FF);
+    background-image: url("images/hero-1.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% auto;
+
+} */
+
+html{
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+ul,li,a{
+    text-decoration: none !important;
+    list-style-type: none !important;
 }
 
 .text-area p{
@@ -16,9 +31,10 @@
 
 }
 h1{
-    font-size: 20px;
+    font-size: 2.125rem;
 
 }
+
 h3{
     font-size: 20px;
 }
@@ -26,6 +42,175 @@ h3{
 
     color:red;
     font-size: 12px;
+
+}
+
+
+// Top menu navigation
+.top-right-link, .top-left-link{
+	padding: 3px 0 0 8px;
+}
+.top-right-link ul li {
+	float: left;
+	color: #FFFFFF;
+	cursor: pointer;
+	border-right: 1px solid #404040;
+    line-height: 15px;
+	margin: 10px 10px 10px 0px;
+    padding-right: 10px;
+}
+.top-left-link ul li {
+	float: left;
+	color: #FFFFFF;
+	cursor: pointer;
+	margin: 10px 10px 10px 0px;
+	line-height: 15px;
+}
+.top-right-link ul li:last-child{
+	margin-right: 0px;
+	border-right: 0px;
+}
+.top-left-link ul li:first-child{
+	margin-right: 15px;
+}
+.top-right-link ul li  {
+	color: #999999;
+}
+.top-left-link ,.icon {
+	color: #999999;
+    float:left;
+}
+.top-right-link ul li a:hover, .top-left-link ul li a:hover, .info-link a:hover {
+	text-decoration: none;
+    
+} 
+.info-link-grey>a{
+	color: #999999 !important;
+}
+.info-link-grey>a:hover{
+	color: $secondary !important;
+}
+
+// Nav bar
+
+
+.header-top{
+    background: black;
+    height: 38px;
+}
+.nav-mid{
+    background: $primary;
+}
+.bottom{
+    background:black;
+ 
+}
+.navig{
+    background: $primary;
+   
+}
+
+form{
+    .form-control {
+        font-size:1.2rem !important;
+        background-color: black !important;
+        border:1px solid $grey !important;
+        width:300px !important;
+        margin-right:0 !important;
+        border-top-right-radius: 0px ;
+        border-bottom-right-radius: 0px ;
+        
+    }
+    .btn{
+        color:$greiish;
+        font-size:1.2rem;
+        background:$grey ;
+        padding:0.390rem 0.75rem;
+        border:1px solid $grey ;
+        border-radius:0px ;
+        border-top-right-radius:5px ;
+        border-bottom-right-radius:5px;
+    }
+
+}
+
+.icons-right-nav {
+    color:$greiish ;
+    font-size:1.2rem;
+    background:$grey ;
+    padding:0.4rem 0.8rem;
+    border:1px solid $grey ;
+    border-radius:5px ;
+    margin-right:8px;
+    &:hover{
+        background:$primary
+    }
+  
+   > .cart{
+       margin-right:5px;
+   }
+}
+
+.categories, .col > a {
+    color:white;
+    font-weight: bold;
+    font-size:18px;
+
+    &:hover{
+        color:$secondary;
+        
+    }
+}
+// Main Category
+
+.heading-text {
+    position: relative;
+}
+.line-bottom:after {
+	background: #b3b3b3;
+	content: "";
+	position: absolute;
+	height: 1px;
+	width: 100%;
+	left: 0;
+	bottom: -5px;
+}
+
+.main_title {
+    display: inline-block;
+    margin-bottom: 0;
+    > span::after {
+        content: "";
+        height: 2px;
+        left: 0;
+        position: absolute;
+        bottom: -5px;
+        width: 70px;
+        z-index: 1;
+        background:$secondary;
+}
+
+}
+
+.card{
+    &:hover{
+        border:1px solid $secondary;
+    }
+    .sticker .div{
+        padding: 4px 10px;
+        display: inline-block;
+    
+    }
+    .category_card{
+        color: #FFFFFF;
+        border-radius: 5px;
+        background: $secondary;
+    }
+    .card-footer .price > span{
+        font-size:26px;
+        color:$secondary;
+        font-weight: 700;
+    }
 
 }
 
