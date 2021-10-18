@@ -32,7 +32,7 @@
           <span> <!-- Add to admin add-->
             <b> In stock</b>
             :
-            <a> 10x</a>
+            <a> {{ product.count }}</a>
           </span>
           <span> <!-- Add to admin add-->
             <b> Reccomended age</b>

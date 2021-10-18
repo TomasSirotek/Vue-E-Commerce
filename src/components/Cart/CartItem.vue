@@ -1,24 +1,55 @@
 <template>
-  <div class="container">
-    <div class="row align-items-center p-5">
-      <div class=" col-lg-7 col-md-7 ">
-        <div class="text-area ">
-          <img
-            src="@/assets/images/game-gta.jpg"
-            alt="product-img"
-            width="100"
-          />
+  <div class="row item-cart-inner justify-content-between text-center">
+    <div class="col-2 d-flex counter">
+      <button
+        type="button"
+        class="btn-grey btn-number-itm btn_minus"
+        @click="addToCart"
+      >
+        +
+      </button>
+      <input
+        class="input-items"
+        type="text"
+        min="1"
+        maxlength="1"
+        max="5"
+        readonly
+        v-model="item.quantity"
+      />
+
+      <button
+        type="button"
+        class="btn-grey btn-number-itm btn_plus"
+        data-pocet="2"
+        @click="removeFromCart"
+      >
+        -
+      </button>
+    </div>
+    <div class="col-2 d-flex">
+      <div class="single-item-pic">
+        <img :src="item.imageCover" alt="product-img" width="50" />
+      </div>
+      <div class="single-item-text">
+        <div class="item-name">
+          <span> {{ item.title }} </span>
         </div>
       </div>
-      <div class="col-lg-5 col-md-5  text-center">
-        <h3>Name => {{ item.title }}</h3>
-        <h3>In cart =>{{ item.quantity }}</h3>
-        <h3>Total Cost => {{ item_cost.toFixed(2) }}$</h3>
-        <p></p>
-        <b-button @click="addToCart" variant="success">Add</b-button>
-        <b-button @click="removeFromCart" variant="success">Remove</b-button>
-        <b-button @click="removeItem" variant="success">X</b-button>
+    </div>
+    <div class="col-2 d-flex justify-content-center">
+      <div class="item-categ">({{ item.category }})</div>
+    </div>
+    <div class="col-3">
+      <div class="item-price">
+        <span> {{ item_cost.toFixed(2) }}$ </span>
+        <span> </span>
       </div>
+    </div>
+    <div class="col-1 d-flex justify-content-center">
+      <a @click="removeItem" class="remove-item">
+        <font-awesome-icon icon="trash-alt" class="cart" />
+      </a>
     </div>
   </div>
 </template>
@@ -27,6 +58,9 @@
 export default {
   name: "CartItem",
   props: ["item"],
+  data() {
+    return {};
+  },
   methods: {
     addToCart() {
       this.$store.commit("addToCart", this.item);

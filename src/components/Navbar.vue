@@ -75,9 +75,9 @@
           <ul class="navbar-nav">
             <a href="/cart">
               <button class="icons-right-nav">
-                <font-awesome-icon icon="shopping-cart" class="cart" />
+                <font-awesome-icon icon="shopping-cart" class="cart " />
                 <span v-if="!items"> Empty cart </span>
-                <span v-else class="colored-if"> {{ items }} $</span>
+                <span v-else class="colored-if"> {{ items.toFixed(2) }} $</span>
               </button>
             </a>
           </ul>

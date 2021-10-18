@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret,faCartPlus,faFolderOpen,faIdCard,faSignOutAlt,faUserShield,faEdit,faUserPlus,faEnvelope,faUser,faShoppingCart } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret,faCartPlus,faFolderOpen,faIdCard,faSignOutAlt,faUserShield,faEdit,faUserPlus,faEnvelope,faUser,faShoppingCart,faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/plugins/bootstrap-vue'
 import '@/assets/style.scss'
@@ -14,7 +14,7 @@ import 'firebase/compat/auth';
 
 
 
-library.add(faUserSecret,faCartPlus,faFolderOpen,faIdCard,faSignOutAlt,faUserShield,faEdit,faUserPlus,faEnvelope,faUser,faShoppingCart)
+library.add(faUserSecret,faCartPlus,faFolderOpen,faIdCard,faSignOutAlt,faUserShield,faEdit,faUserPlus,faEnvelope,faUser,faShoppingCart,faTrashAlt)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(Vue2Editor);
 
