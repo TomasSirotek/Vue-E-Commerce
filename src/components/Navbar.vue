@@ -32,7 +32,7 @@
   <div class="nav-mid">
     <nav class="navbar navbar-expand-lg navbar-dark py-4">
       <div class="container">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           <img
             src="@/assets/images/game-logo.png"
             alt="cover-photo"
@@ -72,10 +72,13 @@
             </div>
           </ul>
           <ul class="navbar-nav">
-            <button class="icons-right-nav">
-              <font-awesome-icon icon="shopping-cart" class="cart" />
-              <span> Empty cart {{ items }}</span>
-            </button>
+            <a href="/cart">
+              <button class="icons-right-nav">
+                <font-awesome-icon icon="shopping-cart" class="cart" />
+                <span v-if="!items"> Empty cart </span>
+                <span v-else class="colored-if"> {{ items }} $</span>
+              </button>
+            </a>
           </ul>
         </div>
       </div>
@@ -114,7 +117,7 @@ export default {
   props: {},
   computed: {
     items() {
-      return this.$store.getters.tottal;
+      return this.$store.getters.cartTotal;
     },
     user() {
       return this.$store.state.user;

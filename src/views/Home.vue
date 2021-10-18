@@ -7,7 +7,6 @@
       </div>
 
       <div class="row mt-4">
-        
         <MainCardsDisplay
           v-for="item in menuItems"
           :key="item.id"

@@ -1,41 +1,70 @@
 <template>
- <div class="container py-5">
+<div class="product-detail">
+    <div class="container py-5">
     <div class="row">
-      <div class="col-lg-5 col-md-5 text-center">
-        <div class="img-product">
-          <img
-            :src="product.imageCover"
-            alt="product-img"
-            width="200"
-          />
+      <div class="col text-center">
+        <div class="product-image">
+          <img :src="product.imageCover" alt="product-img" width="300"/>
         </div>
       </div>
-      <div class="col-lg-7 col-md-7">
+      <div class="col ">
         <div class="product-description">
-          <h2>{{ product.title }}</h2>
-          <p>{{ product.snippet }} </p>
-        </div>
-        <!-- Redo component export-->
-        <div class="product-sort my-3 ">
-          <div class="row flex-column">
-            <h3>{{ product.price}} $
-            </h3>
-           
+          <h1>{{ product.title }}</h1>
+          <span></span>
+          <div class="product-subtitle mt-2">
+            
+            <span>{{ product.subtitle }}</span>
           </div>
-          <!-- Export component -->
         </div>
-        <b-button @click="addToCart" variant="success">Add To Basket</b-button>
-        <div class="test-block">
-          <h2></h2>
+        <div class="product-sort ">
+          <div class="product-price py-2">
+          <span>{{ product.price }} $</span>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div v-html="product.descriptionHTML"></div>
+        <div class="buy-btn mt-2">
+          <a type="button" @click="addToCart" id="button">
+           <font-awesome-icon icon="shopping-cart" class="cart" />
+           Add to cart
+          </a>
+
+        </div>
+        <div class="info-text mt-4">
+          <span> <!-- Add to admin add-->
+            <b> In stock</b>
+            :
+            <a> 10x</a>
+          </span>
+          <span> <!-- Add to admin add-->
+            <b> Reccomended age</b>
+            :
+            <a> 18+</a>
+          </span>
+          <span> <!-- Add to admin add-->
+            <b> Category </b>
+            :
+             <a> {{ product.category}}</a>
+          </span>
+        </div>
       </div>
     </div>
   </div>
+  <div class="container ">
+     <div class="line-bottom heading-text mb-4">
+        <h1 class="main_title"><span>Product Description</span></h1>
+      </div>
+    <div class="row mt-5">
+      
+      <div class="col">
+        <div class="inner-box ">
+          <div v-html="product.descriptionHTML"></div>
+        </div>
+         
+      </div>
+      
+    </div>
+  </div>
+</div>  
+  
 </template>
 
 <script>
@@ -46,14 +75,11 @@ export default {
       this.$store.commit("addToCart", this.product);
     },
   },
-  components: {
-
-  },
+  components: {},
   computed: {
-     product() {
+    product() {
       return this.$store.getters.getProductById(this.$route.params.id);
-    }, 
-    
+    },
   },
 };
 </script>

@@ -1,15 +1,6 @@
 @import "./admin.scss";
 @import "./variables.scss";
 
-/* .home{
-    min-height: 50vh;
-    padding: 50px 0 ;
-    background-image: url("images/hero-1.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% auto;
-
-} */
 
 html{
     font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -31,7 +22,7 @@ ul,li,a{
 
 }
 h1{
-    font-size: 2.125rem;
+    font-size: 2rem;
 
 }
 
@@ -145,7 +136,10 @@ form{
     &:hover{
         background:$primary
     }
-  
+  .colored-if{
+      font-weight: bold;
+      color:$secondary;
+  }
    > .cart{
        margin-right:5px;
    }
@@ -215,4 +209,54 @@ form{
 }
 
 
+// Product
 
+ .product-description > h1 {
+    color:black;
+    font-weight: 800;
+    font-size:1.875rem;
+    text-transform: uppercase;
+
+}
+
+.product-price > span {
+    font-size:40px;
+    font-weight: 700;
+    color:$secondary;
+    
+}
+
+
+    #button{
+    padding:14px;
+    color: #fff;
+    background: $secondary;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid rgba(0, 0, 0, 0.2);
+    &:hover{
+        color: #fff !important;
+        background: $secondaryLight;
+    }
+}
+
+.info-text {
+    display:flex;
+    flex-direction: column;
+}
+
+// Product Description
+
+.special{
+    margin: 60px auto 60px;
+}
+.inner-box{
+    max-width: 770px;
+    font-size: 14px;
+    line-height: 24px;
+    word-break: normal;
+    overflow-wrap: break-word;
+
+    img{
+        max-width:100%;
+    }
+}
