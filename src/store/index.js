@@ -181,12 +181,19 @@ export default new Vuex.Store({
         state.cart = JSON.parse(cart)
       }
     },
+
     filterProducts(state, payload) {
       state.menuItems = state.menuItems.filter(i => i.id !== payload)
     },
     filterOrders(state, payload) {
       state.menuItems = state.orderItems.filter(i => i.id !== payload)
     },
+
+    emptyCart(state){
+      state.cart = [],
+      updateLocalStorage(state.cart)
+    }
+
   },
   actions: {
     setMenuItems: context => {
@@ -199,6 +206,7 @@ export default new Vuex.Store({
     // Setting from db 
     setCheckoutItem: (context) => {
       context.commit('addCheckoutItem')
+     
     }, // Auth here 
     async getCurrentUser({ commit }) {
       const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid);
@@ -206,6 +214,7 @@ export default new Vuex.Store({
       commit("setProfileDetails", dbFinal);
       commit("setProfileInitials")
     },
+
 
 
 
@@ -225,6 +234,12 @@ export default new Vuex.Store({
       commit("updateProducts", payload)
       await this.dispatch("setMenuItems")
     },
+
+
+    emptyCart({ commit}){
+      commit("emptyCart")
+    }
+  
 
   },
   getters: {

@@ -11,12 +11,24 @@
       <span>{{ item.title }}</span>
       <span>{{ item.price }}</span>
     </div>
+
+
+    <div v-if="orderDone"><h2>Order done</h2></div>
+
   </div>
 </template>
 
 <script>
 export default {
   name: "cartTotal",
+
+
+  data() {
+    return {
+      orderDone: false,
+    };
+  },
+
 
   computed: {
     cart_Total() {
@@ -29,9 +41,12 @@ export default {
   beforeCreate() {
     this.$store.dispatch("setOrderItems");
   },
-  methods: {
+  methods: { // Add some modal
     addCheckoutItem() {
+      this.orderDone = true;
       this.$store.dispatch("setCheckoutItem");
+      this.$store.dispatch("emptyCart");
+
     },
   },
 };
