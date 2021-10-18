@@ -159,7 +159,7 @@ export default {
       subtitle: "",
       error: false,
       file: null,
-      category: "PC",
+      category: "Choose",
       options: [
         { item: "PC", category: "PC" },
         { item: "Xbox", category: "Xbox" },

@@ -41,9 +41,7 @@ export default {
   beforeCreate() {
     this.$store.dispatch("setOrderItems");
   },
-
-  methods: {
-
+  methods: { // Add some modal
     addCheckoutItem() {
       this.orderDone = true;
       this.$store.dispatch("setCheckoutItem");
