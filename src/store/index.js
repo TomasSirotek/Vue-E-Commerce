@@ -32,9 +32,11 @@ export default new Vuex.Store({
 
   },
   mutations: {
+    // For user
     updateUser(state, payload) {
       state.user = payload;
     },
+    // For Adding Product
     fileNameChange(state, payload) {
       state.productPhotoName = payload
     },
@@ -44,6 +46,7 @@ export default new Vuex.Store({
     updateDesriptionHTML(state, payload) {
       state.descriptionHTML = payload
     },
+
     setGameState(state, payload) {
       state.descriptionHTML = payload.descriptionHTML,
         state.productPhotoFileUrl = payload.imageCover,
@@ -51,6 +54,7 @@ export default new Vuex.Store({
 
     },
 
+    // For Cart
 
     addCheckoutItem: (state) => {
 
@@ -63,6 +67,7 @@ export default new Vuex.Store({
       })
 
     },
+    // For pulling data stays here
     setMenuItems: state => {
 
       let menuItems = []
@@ -100,7 +105,7 @@ export default new Vuex.Store({
         state.orderItems = orderItems
 
       })
-    },
+    }, // Admin Handling archive
     statusChange(state, id) {
       let selectedOrderItem = state.orderItems.filter(item => item.id === id)[0];
       if (selectedOrderItem.status === "inprogress") {
@@ -136,7 +141,7 @@ export default new Vuex.Store({
 
     },
 
-
+    // Add to cart
     addToCart(state, menuItem) {
       let item = state.cart.find(i => i.id === menuItem.id)
       if (item) {
@@ -162,7 +167,7 @@ export default new Vuex.Store({
       state.cart.splice(item, 1)
       updateLocalStorage(state.cart)
 
-    },// set details
+    },// set details profile
     setProfileDetails(state, doc) {
       state.profileId = doc.id;
       state.profileEmail = doc.data().email;
@@ -170,7 +175,7 @@ export default new Vuex.Store({
       state.profileLastName = doc.data().lastName;
       state.profileUserName = doc.data().userName;
       state.profilePassword = doc.data().userPassword;
-    }, // inititals match
+    }, // inititals match profile
     setProfileInitials(state) {
       state.profileInitials =
         state.profileFirstName.match(/(\b\S)?/g).join("") +
@@ -190,11 +195,22 @@ export default new Vuex.Store({
     filterOrders(state, payload) {
       state.menuItems = state.orderItems.filter(i => i.id !== payload)
     },
-
+// for cart
     emptyCart(state){
       state.cart = [],
       updateLocalStorage(state.cart)
-    }
+    },
+    // Profile Update details Mutations
+    changeFirstName(state,payload){
+      state.profileFirstName = payload;
+    },
+    changeLastName(state,payload){
+      state.profileLastName = payload;
+    },
+    changeProfileUserName(state,payload){
+      state.profileUserName = payload;
+    },
+   
 
   },
   actions: {
@@ -214,12 +230,21 @@ export default new Vuex.Store({
       const dataBase = await db.collection("users").doc(firebase.auth().currentUser.uid);
       const dbFinal = await dataBase.get();
       commit("setProfileDetails", dbFinal);
-      commit("setProfileInitials")
+      commit("setProfileInitials");
+    },
+    async updateUserProfile({commit,state}){
+      const dataBase = await db.collection("users").doc(state.profileId)
+      await dataBase.update({
+        firstName: state.profileFirstName,
+        lastName: state.profileLastName,
+        userName: state.profileUserName,
+      });
+      commit("setProfileInitials");
     },
 
 
 
-
+// Admin editing
     async deleteProduct({ commit }, payload) {
       const getProduct = await db.collection("menuItems").doc(payload);
       await getProduct.delete();
@@ -237,13 +262,13 @@ export default new Vuex.Store({
       await this.dispatch("setMenuItems")
     },
 
-
+// cart Editing
     emptyCart({ commit}){
       commit("emptyCart")
     }
   
 
-  },
+  }, 
   getters: {
     getMenuItems: state => state.menuItems,
     getOrderItems: state => state.orderItems,

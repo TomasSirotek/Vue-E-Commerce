@@ -40,6 +40,7 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Email</label>
               <input
+                disabled
                 type="email"
                 class="form-control"
                 v-model="email"
@@ -51,6 +52,7 @@
               <input
                 :type="type"
                 class="form-control"
+                disabled
                 v-model="password"
                 aria-describedby="emailHelp"
               />
@@ -104,7 +106,7 @@ export default {
     },
     methods: {
         updateProfile() {
-            alert("All updated")
+            this.$store.dispatch("updateUserProfile")
         },
         showPsw(){
             if(this.type === "password") {
@@ -134,14 +136,6 @@ export default {
                 this.$store.commit("changeLastName",payload)
             }
         },
-        email: {
-            get(){
-                return this.$store.state.profileEmail
-            },
-            set(payload){
-                this.$store.commit("changeEmail",payload)
-            }
-        },
         userName: {
             get(){
                 return this.$store.state.profileUserName
@@ -150,15 +144,15 @@ export default {
                 this.$store.commit("changeProfileUserName",payload)
             }
         },
-        password: {
-            get(){
-                return this.$store.state.profilePassword
-            },
-            set(payload){
-                this.$store.commit("changePassword",payload)
-            }
+      
+        email(){
+            return this.$store.state.profileEmail
         },
-    }
+        password(){
+            return this.$store.state.profilePassword
+        },
+        
+    },
 };
 </script>
 
