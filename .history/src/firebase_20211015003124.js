@@ -4,12 +4,12 @@ import 'firebase/compat/auth';
 import 'firebase/compat/storage';
 
 const firebaseConfig = {
-  apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
-  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.VUE_APP_FIREBASE_APP_ID,
+    apiKey: "AIzaSyCfkUKHdwlvHqO5Sx7HcNlQgJ0R7g4K_Ic",
+    authDomain: "vue-e-commerce-e01af.firebaseapp.com",
+    projectId: "vue-e-commerce-e01af",
+    storageBucket: "vue-e-commerce-e01af.appspot.com",
+    messagingSenderId: "482335117020",
+    appId: "1:482335117020:web:8f0101f52c0abf7ecdae19"
   };
 firebase.initializeApp(firebaseConfig);
 

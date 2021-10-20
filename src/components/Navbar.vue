@@ -30,17 +30,17 @@
     </b-navbar>
   </div> 
  -->
-  <div class="navigation-option ">
-    <div class="nav-mid " >
-      <nav class="navbar navbar-expand-lg navbar-dark py-4 ">
+  <div class="navigation-option">
+    <div class="nav-mid">
+      <nav class="navbar navbar-expand-lg navbar-dark py-4">
         <div class="container">
-          <router-link to="/" class="navbar-brand">
-          <img
+          <router-link :to="homeRoute" class="navbar-brand">
+            <img
               src="@/assets/images/game-logo.png"
               alt="cover-photo"
               width="150"
-            /></router-link>
-          
+          /></router-link>
+
           <!-- Search form -->
 
           <button
@@ -73,15 +73,14 @@
                     <font-awesome-icon icon="user" class="user" />
                   </button>
                 </router-link> -->
-                
-                  <button class="icons-right-nav" v-if="!user" v-b-modal.my-modal>
-                    <font-awesome-icon icon="user" class="user" />
-                  </button>
-               
+
+                <button class="icons-right-nav" v-if="!user" v-b-modal.my-modal>
+                  <font-awesome-icon icon="user" class="user" />
+                </button>
               </div>
 
               <div class="d-flex">
-                <router-link to="/profile" v-if="user">
+                <router-link :to="profileRoute" v-if="user">
                   <button class="icons-right-nav account-user">
                     <span>{{ this.$store.state.profileInitials }} </span>
                   </button>
@@ -94,7 +93,7 @@
               </div>
             </ul>
             <ul class="navbar-nav">
-             <router-link to="/cart">
+              <router-link :to="cartRoute">
                 <button class="icons-right-nav">
                   <font-awesome-icon icon="shopping-cart" class="cart" />
                   <span v-if="!items"> Empty cart </span>
@@ -102,7 +101,7 @@
                     {{ items.toFixed(2) }} $</span
                   >
                 </button>
-             </router-link>
+              </router-link>
             </ul>
           </div>
         </div>
@@ -110,29 +109,16 @@
       <div class="bottom">
         <div class="container text-center">
           <div class="row justify-content-center p-2 categories">
-           <div class="col" v-for="(navLink,index) in navItems" :key="index">
-            <router-link :to="navLink.link" >
-              {{ navLink.title}}
-            </router-link>
-               
-           </div>
-          <!--   <div class="col">
-              <router-link to="/products">XBOX</router-link>
+            <div class="col" v-for="(navLink, index) in navItems" :key="index">
+              <router-link :to="navLink.link">
+                {{ navLink.title }}
+              </router-link>
             </div>
-            <div class="col">
-              <router-link to="/products">PS4</router-link>
-            </div>
-            <div class="col">
-              <router-link to="/products">PS5</router-link>
-            </div>
-            <div class="col">
-              <router-link to="/products">FAR CRY 6</router-link>
-            </div> -->
           </div>
         </div>
       </div>
     </div>
-    <LoginModal  />
+    <LoginModal />
   </div>
 </template>
 
@@ -141,20 +127,23 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat";
 import "firebase/firestore";
 import LoginModal from "@/components/Auth/LoginModal.vue";
-import { routes } from '@/helpers/constans.js';
+import { routes } from "@/helpers/constans.js";
 
 export default {
   name: "Navbar",
   data() {
-    return{
+    return {
       login_modal: false,
-      navItems:[
-        { title: "PC", link: routes.pc},
-        { title: "XBOX", link: routes.pc},
-        { title: "PS4", link: routes.pc},
-        { title: "PS5", link: routes.pc},
-      ]
-    }
+      homeRoute: routes.home,
+      profileRoute: routes.profile,
+      cartRoute: routes.cart,
+      navItems: [
+        { title: "PC", link: routes.pc },
+        { title: "XBOX", link: routes.pc },
+        { title: "PS4", link: routes.pc },
+        { title: "PS5", link: routes.pc },
+      ],
+    };
   },
   props: {},
   components: {
@@ -171,7 +160,7 @@ export default {
   methods: {
     logOut() {
       firebase.auth().signOut();
-      this.$router.push({ path: "/"})
+      this.$router.push({ path: "/" });
     },
   },
 };
