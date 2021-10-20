@@ -63,7 +63,6 @@
                     class="form-control"
                     v-model="password"
                     aria-describedby="emailHelp"
-                    placeholder="Password"
                   />
                 </div>
 
@@ -137,6 +136,7 @@ export default {
               firstName: this.firstName,
               lastName: this.lastName,
               userName: this.userName,
+              userPassword:this.password,
               email: this.email,
             });
 

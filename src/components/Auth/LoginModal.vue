@@ -3,7 +3,7 @@
     <b-modal id="my-modal" centered no-stacking title="WELCOME">
       <div class="user-modal">
         <div class="container">
-          <div class="row ">
+          <div class="row">
             <div class="error-div text-center">
               <span class="error" v-show="error">{{ this.errorMsg }}</span>
             </div>
@@ -30,12 +30,9 @@
                     placeholder="Password"
                   />
                 </div>
+
                 <div class="login-grup login-btn text-center">
-                  <b-button
-            
-                    type="submit"
-                    id="button"
-                    @click.prevent="logIn"
+                  <b-button type="submit" id="button" @click.prevent="logIn"
                     >Login</b-button
                   >
                 </div>
@@ -47,9 +44,7 @@
       <template #modal-footer>
         <div class="w-100">
           <div class="text-center">
-         
-              <a class="small" v-b-modal.modal-multi-3>Forgot Password?  </a>
-    
+            <a class="small" v-b-modal.modal-multi-3>Forgot Password? </a>
           </div>
           <div class="text-center">
             <a class="small" v-b-modal.modal-multi-2>Create an Account!</a>
@@ -57,8 +52,8 @@
         </div>
       </template>
     </b-modal>
-   <RegisterModal/>
-   <ResetPassword/>
+    <RegisterModal />
+    <ResetPassword />
   </div>
 </template>
 
@@ -85,6 +80,7 @@ export default {
     logIn() {
       if (this.email !== "" && this.password !== "") {
         this.error = false;
+
         this.errorMsg = "";
         firebase
           .auth()

@@ -28,6 +28,7 @@ export default new Vuex.Store({
     profileUserName: null,
     profileId: null,
     profileInitials: null,
+    profilePassword: null,
 
   },
   mutations: {
@@ -168,6 +169,7 @@ export default new Vuex.Store({
       state.profileFirstName = doc.data().firstName;
       state.profileLastName = doc.data().lastName;
       state.profileUserName = doc.data().userName;
+      state.profilePassword = doc.data().userPassword;
     }, // inititals match
     setProfileInitials(state) {
       state.profileInitials =

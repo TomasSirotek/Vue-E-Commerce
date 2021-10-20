@@ -45,8 +45,8 @@ export default {
         this.$route.name === "orders" ||
         this.$route.name === "Admin" ||
         this.$route.name === "AddAdmin" ||
-        this.$route.name === "ProductCustom" ||
-        this.$route.name === "PasswordReset"
+        this.$route.name === "ProductCustom" 
+
       ) {
         this.noNav = true;
         return;

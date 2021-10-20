@@ -22,18 +22,6 @@ const routes = [
     },
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    meta: {
-      title: "Profile",
-      requiresAuth: false,
-    },
-  },
-  {
     path: '/admin',
     name: 'Admin',
     // route level code-splitting
@@ -81,19 +69,19 @@ const routes = [
       requiresAuth: false,
     },
   },
-
   {
-    path: '/passwordReset',
-    name: 'PasswordReset',
+    path: '/profile',
+    name: 'Profile',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "passwordReset" */ '../views/Auth/PasswordReset.vue'),
+    component: () => import(/* webpackChunkName: "profile" */ '../views/Auth/Profile.vue'),
     meta: {
-      title: "PasswordReset",
-      requiresAuth: false,
+      title: "Profile",
+      requiresAuth: true,
     },
   },
+
 
   {
     path: '/products',
