@@ -16,9 +16,9 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta:{
+    meta: {
       title: "Home",
-      requiresAuth:false,
+      requiresAuth: false,
     },
   },
   {
@@ -28,9 +28,9 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-    meta:{
+    meta: {
       title: "Profile",
-      requiresAuth:false,
+      requiresAuth: false,
     },
   },
   {
@@ -40,9 +40,9 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "admin" */ '../views/Admin/admin.vue'),
-    meta:{
+    meta: {
       title: "Admin",
-      requiresAuth:true,
+      requiresAuth: true,
     },
   },
   {
@@ -52,9 +52,9 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "orders" */ '../views/Admin/orders.vue'),
-    meta:{
+    meta: {
       title: "Orders",
-      requiresAuth:true,
+      requiresAuth: true,
     },
   },
   {
@@ -64,9 +64,9 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "productCustom" */ '../views/Admin/productCustom.vue'),
-    meta:{
+    meta: {
       title: "ProductCustom",
-      requiresAuth:true,
+      requiresAuth: true,
     },
   },
   {
@@ -76,35 +76,12 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
-    meta:{
+    meta: {
       title: "Cart",
-      requiresAuth:false,
+      requiresAuth: false,
     },
   },
-  {
-    path: '/login',
-    name: 'Login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/Auth/Login.vue'),
-    meta:{
-      title: "Login",
-      requiresAuth:false,
-    },
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "register" */ '../views/Auth/Register.vue'),
-    meta:{
-      title: "Register",
-      requiresAuth:false,
-    },
-  },
+
   {
     path: '/passwordReset',
     name: 'PasswordReset',
@@ -112,9 +89,9 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "passwordReset" */ '../views/Auth/PasswordReset.vue'),
-    meta:{
+    meta: {
       title: "PasswordReset",
-      requiresAuth:false,
+      requiresAuth: false,
     },
   },
 
@@ -125,29 +102,29 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: Products,
-    meta:{
+    meta: {
       title: "Products",
-      requiresAuth:false,
+      requiresAuth: false,
     },
   },
   {
     path: '/products/:id',
     name: 'productDetails',
     component: ProductDetails,
-    params:true,
-    meta:{
+    params: true,
+    meta: {
       title: "ProductsDetails",
-      requiresAuth:false,
+      requiresAuth: false,
     },
   },
   {
     path: '/EditProduct/:gameid',
     name: 'EditProduct',
     component: EditProduct,
-    params:true,
-    meta:{
+    params: true,
+    meta: {
       title: "EditProduct",
-      requiresAuth:true,
+      requiresAuth: true,
     },
   }
 ]
@@ -158,10 +135,10 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to,from,next)=>{
-  const requiresAuth = to.matched.some(record=> record.meta.requiresAuth);
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
   const isAuthenticated = firebase.auth().currentUser;
-  if(requiresAuth && !isAuthenticated){
+  if (requiresAuth && !isAuthenticated) {
     next("/");
   } else {
     next();

@@ -12,7 +12,7 @@
               facere? <br />
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe,
               facere?
-            </p>
+            </p> 
 
             <a href="#" class="link-primary">Light link</a>
           </div>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TopMenu />
+    <TopMenu v-if="!noNav" />
     <Nav-bar v-if="!noNav"></Nav-bar>
     <router-view />
   </div>
@@ -41,10 +41,8 @@ export default {
     // checker for routers navigation
     checkRoute() {
       if (
-        this.$route.name === "Login" ||
         this.$route.name === "EditProduct" ||
         this.$route.name === "orders" ||
-        this.$route.name === "Register" ||
         this.$route.name === "Admin" ||
         this.$route.name === "AddAdmin" ||
         this.$route.name === "ProductCustom" ||

@@ -99,7 +99,7 @@ h3 {
   background: $primary;
 }
 
-form {
+.main-form {
   .form-control {
     font-size: 1.2rem !important;
     background-color: black !important;
@@ -328,3 +328,22 @@ form {
         font-size:18px;
     }
 }
+
+.account-user{
+    color:$secondary;
+    text-transform: bold;
+}
+
+
+// Login / Register Modals 
+
+.user-modal{
+  .form-control:focus{
+    border:1px solid $secondary !important;
+    box-shadow:none;
+  }
+}
+
+
+// Modal menu
+
