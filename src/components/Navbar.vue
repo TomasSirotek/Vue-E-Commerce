@@ -110,10 +110,13 @@
       <div class="bottom">
         <div class="container text-center">
           <div class="row justify-content-center p-2 categories">
-            <div class="col">
-              <router-link to="/products">PC</router-link>
-            </div>
-            <div class="col">
+           <div class="col" v-for="(navLink,index) in navItems" :key="index">
+            <router-link :to="navLink.link" >
+              {{ navLink.title}}
+            </router-link>
+               
+           </div>
+          <!--   <div class="col">
               <router-link to="/products">XBOX</router-link>
             </div>
             <div class="col">
@@ -124,7 +127,7 @@
             </div>
             <div class="col">
               <router-link to="/products">FAR CRY 6</router-link>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -138,12 +141,19 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat";
 import "firebase/firestore";
 import LoginModal from "@/components/Auth/LoginModal.vue";
+import { routes } from '@/helpers/constans.js';
 
 export default {
   name: "Navbar",
   data() {
     return{
       login_modal: false,
+      navItems:[
+        { title: "PC", link: routes.pc},
+        { title: "XBOX", link: routes.pc},
+        { title: "PS4", link: routes.pc},
+        { title: "PS5", link: routes.pc},
+      ]
     }
   },
   props: {},
