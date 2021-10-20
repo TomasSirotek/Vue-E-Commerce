@@ -82,12 +82,13 @@
           </div>
           <div class="header-picture text-center mt-4">
             <b-avatar
-              src="https://placekitten.com/300/300"
-              size="5rem"
+              src="https://avatars.dicebear.com/api/pixel-art/:seed.svg"
+              size="6rem"
             ></b-avatar>
            <div class="role-status mt-5">
                <span id="button">Admin</span>
            </div>
+           
             
           </div>
         </div>
@@ -106,7 +107,18 @@ export default {
     },
     methods: {
         updateProfile() {
-            this.$store.dispatch("updateUserProfile")
+            this.$store.dispatch("updateUserProfile");
+            this.boxOne = ''
+        this.$bvModal.msgBoxOk('Your changes were update !',{
+            size:"md",
+            centered: true,
+        })
+          .then(value => {
+            this.boxOne = value
+          })
+          .catch(err => {
+            this.boxOne = err.message
+          })
         },
         showPsw(){
             if(this.type === "password") {
