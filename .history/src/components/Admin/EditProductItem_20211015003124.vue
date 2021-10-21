@@ -131,7 +131,7 @@
                   <div class="col-sm-4 mb-3 mb-sm-0">
                     <b-button
                       class="btn btn-primary btn-user btn-block"
-                      @click="updateChanges"
+                      @click="updateFB"
                     >
                       Update changes
                     </b-button>

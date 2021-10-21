@@ -17,7 +17,7 @@ const actions = {
 
 // mutations
 const mutations = {
-     /* addToCart(state, menuItem) {
+    /* addToCart(state, menuItem) {
         let item = state.cart.find(i => i.id === menuItem.id)
         if (item) {
           item.quantity++
@@ -42,7 +42,7 @@ const mutations = {
         state.cart.splice(item, 1)
         updateLocalStorage(state.cart)
   
-      },  */
+      }, */
     
     
   }
@@ -57,7 +57,7 @@ export default {
   mutations
 }
 
-/* function updateLocalStorage(cart) {
+function updateLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart))
   
-  }  */
+  }

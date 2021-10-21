@@ -57,7 +57,7 @@ export default {
   mutations
 }
 
-/* function updateLocalStorage(cart) {
+function updateLocalStorage(cart) {
     localStorage.setItem('cart', JSON.stringify(cart))
   
-  }  */
+  } 

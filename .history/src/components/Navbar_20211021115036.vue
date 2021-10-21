@@ -1,4 +1,5 @@
 <template>
+
   <div class="navigation-option">
     <div class="nav-mid">
       <nav class="navbar navbar-expand-lg navbar-dark py-4">

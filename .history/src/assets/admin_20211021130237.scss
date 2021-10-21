@@ -5,7 +5,7 @@
 }
 
 #wrapper #content-wrapper {
-  background-color: $lighterGrey;
+  background-color: #f8f9fc;
   width: 100%;
   overflow-x: hidden;
 }
@@ -50,6 +50,7 @@
   letter-spacing: 0.05rem;
   z-index: 1;
 }
+
 .sidebar .sidebar-brand .sidebar-brand-icon i {
   font-size: 2rem;
 }
@@ -60,7 +61,7 @@
 @media (min-width: 768px) {
   .sidebar {
     width: 14rem !important;
-    background: $grey;
+    background:$grey;
   }
 
   .sidebar .nav-item .nav-link {
@@ -91,8 +92,8 @@
 .sidebar-dark .sidebar-brand {
   color: $secondary;
   font-weight: bold;
-  :first-child {
-    color: white;
+  :first-child{
+    color:white;
   }
 }
 
@@ -102,10 +103,12 @@
 
 .sidebar-dark .sidebar-heading {
   margin-left: 15px;
-  color: $secondary;
+  color:$secondary;
   text-transform: uppercase;
   font-weight: bold;
 }
+
+
 // All links sidebar
 .sidebar-dark .nav-item .nav-link {
   color: rgba(255, 255, 255, 0.8);
@@ -124,3 +127,4 @@
 .sidebar-dark .nav-item.active .nav-link {
   color: #fff;
 }
+
