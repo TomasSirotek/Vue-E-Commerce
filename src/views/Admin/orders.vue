@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <FooterAdmin />
+  
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@
 import SoldTable from "@/components/Admin/SoldTable.vue";
 import SideBar from "@/components/Admin/SideBar.vue";
 import TopBar from "@/components/Admin/TopBar.vue";
-import FooterAdmin from "@/components/Admin/Footer.vue";
+
 
 export default {
   name: "Orders",
@@ -40,7 +40,7 @@ export default {
     SoldTable,
     SideBar,
     TopBar,
-    FooterAdmin,
+  
   },
 };
 </script>
