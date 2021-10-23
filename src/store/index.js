@@ -10,6 +10,7 @@ import "firebase/firestore";
 import cart from './modules/cart'
 import products from './modules/products'
 
+
 Vue.use(Vuex)
 
 
@@ -21,7 +22,7 @@ export default new Vuex.Store({
     archivedItems: [],
     counter: 1,
     collectionOfUsers: [],
-    productsLoaded:null,
+    productsLoaded:true,
     descriptionHTML: "Your description of product write here",
     productPhotoFileUrl: null,
     productPhotoName: "",
@@ -91,8 +92,14 @@ export default new Vuex.Store({
         
         state.menuItems = menuItems
         console.log(state.menuItems)
+        console.log("here => bitch")
+     
       })
     }, 
+
+
+
+
 
     setOrderItems: state => {
 
