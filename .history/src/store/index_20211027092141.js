@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import 'firebase/firestore';
-import { dbOrders, db } from '../firebase'
+import { /* dbMenuAdd, */ dbOrders, db } from '../firebase'
 import firebase from "firebase/compat";
 import "firebase/compat/auth";
 import "firebase/firestore";
