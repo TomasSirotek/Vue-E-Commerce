@@ -11,7 +11,7 @@
       @keyup='search'
     
     />
-    <button class="btn my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn my-2 my-sm-0" type="submit" @click="filteredPeople">Search</button>
     <SearchResults 
     v-show="test"
    
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       input: "",
-      test:false,
+      test:true ,
       
     };
   },
@@ -41,7 +41,14 @@ export default {
       
     },
     computed:{
-      
+       filteredPeople() {
+    if (this.people) {
+      return this.people.filter((person) => {
+         return person.name.match(this.search);
+      });
+    }
+    return false;
+  }
     }
     
   },

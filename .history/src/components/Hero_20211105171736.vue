@@ -1,6 +1,6 @@
 <template>
         <div>
-  <!--   <b-carousel
+    <b-carousel
       id="carousel-1"
       v-model="slide"
       :interval="4000"
@@ -41,7 +41,7 @@
       </b-carousel-slide>
      
    
-    </b-carousel> -->
+    </b-carousel>
 
    
   </div>

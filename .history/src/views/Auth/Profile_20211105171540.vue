@@ -86,8 +86,9 @@
               size="6rem"
             ></b-avatar>
            <div class="role-status mt-5">
-               <span id="button" v-if="isAdmin" >Admin</span>
-               <span id="button" v-else >User</span>
+               <span><b>ROLE</b> </span>
+               <span id="button" >Admin</span>
+               <span id="button"  >User</span>
                 
            </div>
           

@@ -11,7 +11,7 @@
       @keyup='search'
     
     />
-    <button class="btn my-2 my-sm-0" type="submit">Search</button>
+    <button class="btn my-2 my-sm-0" type="submit" @click="">Search</button>
     <SearchResults 
     v-show="test"
    
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       input: "",
-      test:false,
+      test:true ,
       
     };
   },
@@ -40,9 +40,7 @@ export default {
       
       
     },
-    computed:{
-      
-    }
+    computed:
     
   },
   computed: {},

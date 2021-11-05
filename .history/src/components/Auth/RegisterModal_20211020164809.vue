@@ -138,7 +138,6 @@ export default {
               userName: this.userName,
               userPassword:this.password,
               email: this.email,
-              isAdmin : false,
             });
 
             this.boxOne = "";

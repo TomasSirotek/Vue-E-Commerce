@@ -118,7 +118,7 @@ export default {
     },
     user() {
       return this.$store.state.user;
-      
+      console.log()
     },
     displaySearch(){
       return this.$store.getters.displaySearch

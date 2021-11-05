@@ -117,8 +117,8 @@ export default {
       return this.$store.getters.cartTotal;
     },
     user() {
-      return this.$store.state.user;
-      
+      return c;
+      console.log(user)
     },
     displaySearch(){
       return this.$store.getters.displaySearch

@@ -65,7 +65,7 @@
               <b-button class="ml-3"  @click.prevent="showPsw" id="button"
                 >{{btnText}}</b-button
               >
-              <router-link to="/admin" v-if="isAdmin">
+              <router-link to="/admin">
                 <button id="button" class="ml-3">
                   <span>Admin Page </span>
                 </button>
@@ -86,11 +86,12 @@
               size="6rem"
             ></b-avatar>
            <div class="role-status mt-5">
-               <span id="button" v-if="isAdmin" >Admin</span>
-               <span id="button" v-else >User</span>
-                
+               <span id="button">Admin</span>
+                <span id="button">User</span>
            </div>
-          
+           <div class="role-status mt-5">
+              
+           </div>
            
             
           </div>
@@ -106,7 +107,7 @@ export default {
         return{
          btnText: "ShowPassword",
          type: "password",
-         isAdmin:this.$store.state.isAdmin,
+         isAdmin: true,
         }
     },
     methods: {
@@ -167,7 +168,6 @@ export default {
         password(){
             return this.$store.state.profilePassword
         },
-
         
     },
 };

@@ -27,7 +27,6 @@ export default new Vuex.Store({
     productPhotoFileUrl: null,
     productPhotoName: "",
     user: null,
-    isAdmin:null,
     profileEmail: null,
     profileFirstName: null,
     profileLastName: null,
@@ -173,7 +172,6 @@ export default new Vuex.Store({
       state.profileLastName = doc.data().lastName;
       state.profileUserName = doc.data().userName;
       state.profilePassword = doc.data().userPassword;
-      state.isAdmin  = doc.data().isAdmin;
     }, // inititals match profile
     setProfileInitials(state) {
       state.profileInitials =

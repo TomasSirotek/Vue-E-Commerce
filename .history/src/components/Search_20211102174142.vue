@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       input: "",
-      test:false,
+      test:true ,
       
     };
   },
@@ -40,9 +40,6 @@ export default {
       
       
     },
-    computed:{
-      
-    }
     
   },
   computed: {},

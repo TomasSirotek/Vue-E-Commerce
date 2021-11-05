@@ -8,7 +8,6 @@
       v-model.trim="input"
       v-on:input="search()"
       ref="input"
-      @keyup='search'
     
     />
     <button class="btn my-2 my-sm-0" type="submit">Search</button>
@@ -29,7 +28,7 @@ export default {
   data() {
     return {
       input: "",
-      test:false,
+      test:true ,
       
     };
   },
@@ -40,9 +39,6 @@ export default {
       
       
     },
-    computed:{
-      
-    }
     
   },
   computed: {},

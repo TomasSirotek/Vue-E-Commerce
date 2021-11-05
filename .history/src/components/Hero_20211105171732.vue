@@ -1,6 +1,6 @@
 <template>
         <div>
-  <!--   <b-carousel
+    <b-carousel
       id="carousel-1"
       v-model="slide"
       :interval="4000"
@@ -39,9 +39,9 @@
           >
         </template>
       </b-carousel-slide>
-     
+      <!-- Slide with blank fluid image to maintain slide aspect ratio -->
    
-    </b-carousel> -->
+    </b-carousel>
 
    
   </div>

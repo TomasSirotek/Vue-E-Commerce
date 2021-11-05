@@ -86,9 +86,9 @@
               size="6rem"
             ></b-avatar>
            <div class="role-status mt-5">
-               <span id="button" v-if="isAdmin" >Admin</span>
-               <span id="button" v-else >User</span>
-                
+               <span><b>ROLE</b> </span>
+               <span id="button" v-if="!isAdmin" >User</span>
+                <span id="button" v-else>Admin</span>
            </div>
           
            
@@ -106,7 +106,7 @@ export default {
         return{
          btnText: "ShowPassword",
          type: "password",
-         isAdmin:this.$store.state.isAdmin,
+         isAdmin: ,
         }
     },
     methods: {
@@ -167,7 +167,10 @@ export default {
         password(){
             return this.$store.state.profilePassword
         },
-
+        test(){
+            return this.$store.state.isAdmin
+            
+        },
         
     },
 };

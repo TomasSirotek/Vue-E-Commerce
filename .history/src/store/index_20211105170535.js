@@ -173,7 +173,7 @@ export default new Vuex.Store({
       state.profileLastName = doc.data().lastName;
       state.profileUserName = doc.data().userName;
       state.profilePassword = doc.data().userPassword;
-      state.isAdmin  = doc.data().isAdmin;
+      state.isAdmin=
     }, // inititals match profile
     setProfileInitials(state) {
       state.profileInitials =
