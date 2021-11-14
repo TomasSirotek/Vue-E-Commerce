@@ -73,17 +73,10 @@
                   <input
                     type="email"
                     class="form-control"
-                    v-model.trim="$v.email.$model"
+                    v-model.trim="$v.password.$model"
                     aria-describedby="emailHelp"
                     placeholder="Email"
                   />
-                   <div class="error" v-if="!$v.email.required">
-                    Password is required.
-                  </div>
-                  <div class="error" v-if="!$v.email.email">
-                    Email is badly Formatted
-                  
-                  </div>
                 </div>
                 <div
                   class="form-group mb-3"

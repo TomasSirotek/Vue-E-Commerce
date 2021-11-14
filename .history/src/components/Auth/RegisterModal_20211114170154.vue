@@ -77,13 +77,6 @@
                     aria-describedby="emailHelp"
                     placeholder="Email"
                   />
-                   <div class="error" v-if="!$v.email.required">
-                    Password is required.
-                  </div>
-                  <div class="error" v-if="!$v.email.email">
-                    Email is badly Formatted
-                  
-                  </div>
                 </div>
                 <div
                   class="form-group mb-3"

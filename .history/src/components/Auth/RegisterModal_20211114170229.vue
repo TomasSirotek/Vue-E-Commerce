@@ -81,8 +81,8 @@
                     Password is required.
                   </div>
                   <div class="error" v-if="!$v.email.email">
-                    Email is badly Formatted
-                  
+                    Password must have at least
+                    {{ $v.password.$params.minLength.min }} letters.
                   </div>
                 </div>
                 <div

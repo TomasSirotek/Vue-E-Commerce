@@ -68,22 +68,15 @@
                   </div>
                 </div>
 
-                <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
+                <div class="form-group">
                   <label for="exampleInputEmail1">Email</label>
                   <input
                     type="email"
                     class="form-control"
-                    v-model.trim="$v.email.$model"
+                    v-model="email"
                     aria-describedby="emailHelp"
                     placeholder="Email"
                   />
-                   <div class="error" v-if="!$v.email.required">
-                    Password is required.
-                  </div>
-                  <div class="error" v-if="!$v.email.email">
-                    Email is badly Formatted
-                  
-                  </div>
                 </div>
                 <div
                   class="form-group mb-3"
@@ -177,7 +170,7 @@ import firebase from "firebase/compat";
 import "firebase/firestore";
 import { db } from "../../firebase.js";
 import SpinnerLoad from "@/components/Admin/Alerts/SpinnerLoad.vue";
-import { required, minLength, sameAs,email } from "vuelidate/lib/validators";
+import { required, minLength, sameAs } from "vuelidate/lib/validators";
 
 export default {
   name: "Register",
@@ -215,10 +208,6 @@ export default {
     },
     repeatPassword: {
       sameAsPassword: sameAs("password"),
-    },
-    email: {
-      required,
-      email
     },
   },
   methods: {
@@ -264,7 +253,7 @@ export default {
             });
             this.loading = false;
             this.$bvModal.hide("modal-multi-2");
-            this.reset();
+            reset();
           });
       }
     },
