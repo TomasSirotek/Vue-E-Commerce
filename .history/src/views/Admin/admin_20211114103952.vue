@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div >
     <SideBar />
-
+  
     <div class="d-flex flex-column">
-      <div>
+      <div >
         <TopBar />
         <div class="container-fluid">
           <div class="row">
@@ -15,28 +15,27 @@
             <div class="col-xl-12 col-lg-7">
               <div class="card shadow mb-4">
                 <div
-                  class="
-                    card-header
-                    py-3
-                    d-flex
-                    flex-row
-                    align-items-center
-                    justify-content-between
-                  "
+                  class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
                 >
-                  <h4 class="m-0 font-weight-bold">Products in Shop</h4>
+                  <h4 class="m-0 font-weight-bold ">
+                    Products in Shop
+                  </h4>
                 </div>
                 <div class="card-body">
-                  <Table />
+                  <Table 
+        
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
-    <router-view></router-view>
+     <router-view></router-view>
   </div>
+ 
 </template>
 
 <script>
@@ -57,8 +56,11 @@ export default {
     ProductsShop,
     SideBar,
     TopBar,
+   
   },
-  computed: {},
+  computed:{
+
+  }
 };
 </script>
 

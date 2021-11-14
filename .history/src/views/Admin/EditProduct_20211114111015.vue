@@ -29,7 +29,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Title"
-                        v-model="title"
+                        v-model="gameTitle"
                       />
                     </div>
                     <div class="col-sm-4">
@@ -37,12 +37,12 @@
                         type="text"
                         class="form-control"
                         placeholder="Subtitle"
-                        v-model="subtitle"
+                        v-model="gameSubtitle"
                       />
                     </div>
                     <div class="col-sm-4">
                       <b-form-select
-                        v-model="category"
+                        v-model="gameCategory"
                         :options="options"
                         class="mb-3 category"
                       ></b-form-select>
@@ -54,7 +54,7 @@
                         type="number"
                         class="form-control"
                         placeholder="How many you want to add ?"
-                        v-model="count"
+                        v-model="gameCount"
                       />
                     </div>
                     <div class="col-sm-4">
@@ -62,7 +62,7 @@
                         type="number"
                         class="form-control"
                         placeholder="Price in USD"
-                        v-model="price"
+                        v-model="gamePricegamePrice"
                       />
                     </div>
                     <div class="col-sm-4">
@@ -149,7 +149,7 @@ import TopBar from "@/components/Admin/TopBar.vue";
 import PreviewWindow from "@/components/Admin/PreviewWindow.vue";
 import SpinnerLoad from "@/components/Admin/Alerts/SpinnerLoad.vue";
 import SuccessAlert from "@/components/Admin/Alerts/SuccessAlert.vue";
-
+import { mapState } from 'vuex'
 export default {
   name: "EditProduct",
   components: {
@@ -162,17 +162,17 @@ export default {
   data() {
     return {
       /* title: "", */
-      /* count: "", */
+     /*  count: "",
       errorMsg: "",
-      /* price: "", */
-  /*     subtitle: "", */
+      price: "",
+      subtitle: "", */
       error: false,
       file: null,
       loading: false,
       success: false,
       routeID: null,
       currentGame: null,
-     /*  category: null,  */
+      category: null,
       options: [
         { value: null, text: "Please select an option" },
         { value: "PC", text: "PC" },
@@ -263,7 +263,7 @@ export default {
         }
         this.loading = true;
         await dataBase.update({
-          title: this.title,
+          title: this.gameTitle,
           descriptionHTML: this.descriptionHTML,
           price: this.price,
           category: this.category,
@@ -309,17 +309,24 @@ export default {
     },
   },
   computed: {
-     productPhotoName() {
+   /*  productPhotoName() {
       return this.$store.state.productPhotoName;
     },
-    /*
     profileId() {
       return this.$store.state.profileId;
-    }, 
-   /*  title() {
+    },
+    title() {
       return this.$store.state.gameTitle;
-    }, */ 
-   
+    }, */
+    ...mapState([
+      'gameTitle',
+      "profileId",
+      "productPhotoName",
+      "gameSubtitle",
+      "gameCategory",
+      "gameCount",
+      "gamePrice"
+      ]),
     descriptionHTML: {
       get() {
         return this.$store.state.descriptionHTML;
@@ -327,46 +334,6 @@ export default {
       set(payload) {
         this.$store.commit("updateDesriptionHTML", payload);
       },
-    },
-    title:{
-      get(){
-        return this.$store.state.gameTitle;
-      },
-      set(payload){
-        this.$store.commit("updateTitle", payload);
-      }
-    },
-    subtitle:{
-      get(){
-        return this.$store.state.gameSubtitle;
-      },
-      set(payload){
-        this.$store.commit("updateSubTitle", payload);
-      }
-    },
-    count:{
-      get(){
-        return this.$store.state.gameCount;
-      },
-      set(payload){
-        this.$store.commit("updateCount", payload);
-      }
-    },
-    price:{
-      get(){
-        return this.$store.state.gamePrice;
-      },
-      set(payload){
-        this.$store.commit("updatePrice", payload);
-      }
-    },
-    category:{
-      get(){
-        return this.$store.state.gameCategory;
-      },
-      set(payload){
-        this.$store.commit("updateCategory", payload);
-      }
     },
   },
 };

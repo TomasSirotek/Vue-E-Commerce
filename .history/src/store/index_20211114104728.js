@@ -7,6 +7,8 @@ import "firebase/compat/auth";
 import "firebase/firestore";
 
 
+import  cart2 from './modules/cart2';
+import  products from './modules/products'
 
 
 
@@ -38,11 +40,7 @@ export default new Vuex.Store({
     profileInitials: null,
     profilePassword: null,
 
-    gameTitle:"",
-    gameSubtitle:"",
-    gameCategory:"",
-    gameCount:"",
-    gamePrice:"",
+    search:"",
     
   
 
@@ -50,7 +48,9 @@ export default new Vuex.Store({
   mutations: {
   
     
-  
+    setDisplaySearch(state,payload){
+      state.search = payload;
+    },
     // For user
     updateUser(state, payload) {
       state.user = payload;
@@ -65,33 +65,11 @@ export default new Vuex.Store({
     updateDesriptionHTML(state, payload) {
       state.descriptionHTML = payload
     },
-    updateTitle(state,payload){
-      state.gameTitle = payload
-    },
-    updateSubTitle(state,payload){
-      state.gameSubtitle = payload
-    },
-    updateCount(state,payload){
-      state.gameCount = payload
-    },
-    updatePrice(state,payload){
-      state.gamePrice = payload
-    },
-    updateCategory(state,payload){
-      state.gameCategory = payload
-    },
 
     setGameState(state, payload) {
       state.descriptionHTML = payload.descriptionHTML;
       state.productPhotoFileUrl = payload.imageCover;
       state.productPhotoName = payload.productPhotoName;
-
-      state.gameTitle = payload.title;
-      state.gameSubtitle = payload.subtitle;
-      state.gameCategory = payload.category;
-      state.gameCount = payload.count;
-      state.gamePrice = payload.price;
-
 
     },
 
@@ -415,7 +393,8 @@ export default new Vuex.Store({
 
 
   modules: {
-  
+    cart2, 
+    products,
     
   }
 })

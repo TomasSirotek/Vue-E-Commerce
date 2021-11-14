@@ -172,7 +172,7 @@ export default {
       success: false,
       routeID: null,
       currentGame: null,
-     /*  category: null,  */
+     /*  category: null, */
       options: [
         { value: null, text: "Please select an option" },
         { value: "PC", text: "PC" },
@@ -357,15 +357,15 @@ export default {
         return this.$store.state.gamePrice;
       },
       set(payload){
-        this.$store.commit("updatePrice", payload);
+        this.$store.commit("updateCount", payload);
       }
     },
     category:{
       get(){
-        return this.$store.state.gameCategory;
+        return this.$store.state.gameCount;
       },
       set(payload){
-        this.$store.commit("updateCategory", payload);
+        this.$store.commit("updateCount", payload);
       }
     },
   },

@@ -65,21 +65,6 @@ export default new Vuex.Store({
     updateDesriptionHTML(state, payload) {
       state.descriptionHTML = payload
     },
-    updateTitle(state,payload){
-      state.gameTitle = payload
-    },
-    updateSubTitle(state,payload){
-      state.gameSubtitle = payload
-    },
-    updateCount(state,payload){
-      state.gameCount = payload
-    },
-    updatePrice(state,payload){
-      state.gamePrice = payload
-    },
-    updateCategory(state,payload){
-      state.gameCategory = payload
-    },
 
     setGameState(state, payload) {
       state.descriptionHTML = payload.descriptionHTML;
@@ -88,10 +73,7 @@ export default new Vuex.Store({
 
       state.gameTitle = payload.title;
       state.gameSubtitle = payload.subtitle;
-      state.gameCategory = payload.category;
-      state.gameCount = payload.count;
-      state.gamePrice = payload.price;
-
+      state.gameCategory = payload.title;
 
     },
 

@@ -174,7 +174,7 @@ export default {
       currentGame: null,
      /*  category: null,  */
       options: [
-        { value: null, text: "Please select an option" },
+       /*  { value: null, text: "Please select an option" }, */
         { value: "PC", text: "PC" },
         { value: "XBOX", text: "XBOX" },
         { value: "PS4", text: "PS4" },

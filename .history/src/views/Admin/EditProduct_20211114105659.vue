@@ -29,7 +29,7 @@
                         type="text"
                         class="form-control"
                         placeholder="Title"
-                        v-model="title"
+                        v-model="this.title"
                       />
                     </div>
                     <div class="col-sm-4">
@@ -162,17 +162,17 @@ export default {
   data() {
     return {
       /* title: "", */
-      /* count: "", */
+      count: "",
       errorMsg: "",
-      /* price: "", */
-  /*     subtitle: "", */
+      price: "",
+      subtitle: "",
       error: false,
       file: null,
       loading: false,
       success: false,
       routeID: null,
       currentGame: null,
-     /*  category: null,  */
+      category: null,
       options: [
         { value: null, text: "Please select an option" },
         { value: "PC", text: "PC" },
@@ -309,17 +309,15 @@ export default {
     },
   },
   computed: {
-     productPhotoName() {
+    productPhotoName() {
       return this.$store.state.productPhotoName;
     },
-    /*
     profileId() {
       return this.$store.state.profileId;
-    }, 
-   /*  title() {
-      return this.$store.state.gameTitle;
-    }, */ 
-   
+    },
+    title() {
+      return this.$store.state.profileId;
+    },
     descriptionHTML: {
       get() {
         return this.$store.state.descriptionHTML;
@@ -327,46 +325,6 @@ export default {
       set(payload) {
         this.$store.commit("updateDesriptionHTML", payload);
       },
-    },
-    title:{
-      get(){
-        return this.$store.state.gameTitle;
-      },
-      set(payload){
-        this.$store.commit("updateTitle", payload);
-      }
-    },
-    subtitle:{
-      get(){
-        return this.$store.state.gameSubtitle;
-      },
-      set(payload){
-        this.$store.commit("updateSubTitle", payload);
-      }
-    },
-    count:{
-      get(){
-        return this.$store.state.gameCount;
-      },
-      set(payload){
-        this.$store.commit("updateCount", payload);
-      }
-    },
-    price:{
-      get(){
-        return this.$store.state.gamePrice;
-      },
-      set(payload){
-        this.$store.commit("updatePrice", payload);
-      }
-    },
-    category:{
-      get(){
-        return this.$store.state.gameCategory;
-      },
-      set(payload){
-        this.$store.commit("updateCategory", payload);
-      }
     },
   },
 };

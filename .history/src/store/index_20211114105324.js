@@ -38,11 +38,7 @@ export default new Vuex.Store({
     profileInitials: null,
     profilePassword: null,
 
-    gameTitle:"",
-    gameSubtitle:"",
-    gameCategory:"",
-    gameCount:"",
-    gamePrice:"",
+    
     
   
 
@@ -50,7 +46,9 @@ export default new Vuex.Store({
   mutations: {
   
     
-  
+    setDisplaySearch(state,payload){
+      state.search = payload;
+    },
     // For user
     updateUser(state, payload) {
       state.user = payload;
@@ -65,33 +63,11 @@ export default new Vuex.Store({
     updateDesriptionHTML(state, payload) {
       state.descriptionHTML = payload
     },
-    updateTitle(state,payload){
-      state.gameTitle = payload
-    },
-    updateSubTitle(state,payload){
-      state.gameSubtitle = payload
-    },
-    updateCount(state,payload){
-      state.gameCount = payload
-    },
-    updatePrice(state,payload){
-      state.gamePrice = payload
-    },
-    updateCategory(state,payload){
-      state.gameCategory = payload
-    },
 
     setGameState(state, payload) {
       state.descriptionHTML = payload.descriptionHTML;
       state.productPhotoFileUrl = payload.imageCover;
       state.productPhotoName = payload.productPhotoName;
-
-      state.gameTitle = payload.title;
-      state.gameSubtitle = payload.subtitle;
-      state.gameCategory = payload.category;
-      state.gameCount = payload.count;
-      state.gamePrice = payload.price;
-
 
     },
 

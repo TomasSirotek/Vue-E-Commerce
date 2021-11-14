@@ -172,7 +172,7 @@ export default {
       success: false,
       routeID: null,
       currentGame: null,
-     /*  category: null,  */
+      category: this.category, 
       options: [
         { value: null, text: "Please select an option" },
         { value: "PC", text: "PC" },

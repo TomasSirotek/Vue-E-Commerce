@@ -43,7 +43,7 @@
                     <div class="col-sm-4">
                       <b-form-select
                         v-model="category"
-                        :options="options"
+                        :options="category"
                         class="mb-3 category"
                       ></b-form-select>
                     </div>

@@ -164,7 +164,7 @@ export default {
       /* title: "", */
       /* count: "", */
       errorMsg: "",
-      /* price: "", */
+      price: "",
   /*     subtitle: "", */
       error: false,
       file: null,
@@ -172,7 +172,7 @@ export default {
       success: false,
       routeID: null,
       currentGame: null,
-     /*  category: null,  */
+      category: null,
       options: [
         { value: null, text: "Please select an option" },
         { value: "PC", text: "PC" },
@@ -351,23 +351,7 @@ export default {
       set(payload){
         this.$store.commit("updateCount", payload);
       }
-    },
-    price:{
-      get(){
-        return this.$store.state.gamePrice;
-      },
-      set(payload){
-        this.$store.commit("updatePrice", payload);
-      }
-    },
-    category:{
-      get(){
-        return this.$store.state.gameCategory;
-      },
-      set(payload){
-        this.$store.commit("updateCategory", payload);
-      }
-    },
+    }
   },
 };
 </script>

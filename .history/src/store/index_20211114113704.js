@@ -75,10 +75,10 @@ export default new Vuex.Store({
       state.gameCount = payload
     },
     updatePrice(state,payload){
-      state.gamePrice = payload
+      state.gameCount = payload
     },
-    updateCategory(state,payload){
-      state.gameCategory = payload
+    updateCount(state,payload){
+      state.gameCount = payload
     },
 
     setGameState(state, payload) {

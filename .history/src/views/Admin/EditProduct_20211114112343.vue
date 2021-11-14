@@ -162,17 +162,17 @@ export default {
   data() {
     return {
       /* title: "", */
-      /* count: "", */
+     /*  count: "",
       errorMsg: "",
-      /* price: "", */
-  /*     subtitle: "", */
+      price: "",
+      subtitle: "", */
       error: false,
       file: null,
       loading: false,
       success: false,
       routeID: null,
       currentGame: null,
-     /*  category: null,  */
+      category: null,
       options: [
         { value: null, text: "Please select an option" },
         { value: "PC", text: "PC" },
@@ -263,7 +263,7 @@ export default {
         }
         this.loading = true;
         await dataBase.update({
-          title: this.title,
+          title: this.gameTitle,
           descriptionHTML: this.descriptionHTML,
           price: this.price,
           category: this.category,
@@ -309,13 +309,12 @@ export default {
     },
   },
   computed: {
-     productPhotoName() {
+   /*  productPhotoName() {
       return this.$store.state.productPhotoName;
     },
-    /*
     profileId() {
       return this.$store.state.profileId;
-    }, 
+    }, */
    /*  title() {
       return this.$store.state.gameTitle;
     }, */ 
@@ -335,39 +334,15 @@ export default {
       set(payload){
         this.$store.commit("updateTitle", payload);
       }
-    },
-    subtitle:{
+    }
+    subTitle:{
       get(){
         return this.$store.state.gameSubtitle;
       },
       set(payload){
-        this.$store.commit("updateSubTitle", payload);
+        this.$store.commit("updateTitle", payload);
       }
-    },
-    count:{
-      get(){
-        return this.$store.state.gameCount;
-      },
-      set(payload){
-        this.$store.commit("updateCount", payload);
-      }
-    },
-    price:{
-      get(){
-        return this.$store.state.gamePrice;
-      },
-      set(payload){
-        this.$store.commit("updatePrice", payload);
-      }
-    },
-    category:{
-      get(){
-        return this.$store.state.gameCategory;
-      },
-      set(payload){
-        this.$store.commit("updateCategory", payload);
-      }
-    },
+    }
   },
 };
 </script>
