@@ -194,7 +194,7 @@ export default new Vuex.Store({
     },
     removeItem(state, currentGame) {
       let indexItem = state.cart.indexOf(currentGame)
-     
+      console.log("test", indexItem)
       if (indexItem || indexItem == 0) {
         state.cart.splice(indexItem, 1)
       }

@@ -25,7 +25,7 @@
           id="collapse-1-inner"
           class="mt-2"
           v-for="(subitem,idx) in item.orderFromUser"
-          :key="idx.id"
+          :key="subitem"
         >
           <b-card>{{ subitem.title }} </b-card>
         </b-collapse>

@@ -286,11 +286,15 @@ export default {
          setTimeout(() => {
         this.$router.push({ path: "/admin" });
 
-      }, 5000);
+      }, 4000);
         
 
       }
-  
+      /* this.error = true;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000); */
     },
 
     fileChange() {

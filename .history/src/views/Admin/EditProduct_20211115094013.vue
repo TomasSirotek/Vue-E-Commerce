@@ -290,7 +290,11 @@ export default {
         
 
       }
-  
+      /* this.error = true;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000); */
     },
 
     fileChange() {

@@ -4,7 +4,6 @@
 
     <div class="d-flex flex-column">
       <div>
-     
         <TopBar />
         <div class="container-fluid">
           <div class="row">
@@ -35,7 +34,7 @@
           </div>
         </div>
       </div>
-     
+      
     </div>
     <router-view></router-view>
     

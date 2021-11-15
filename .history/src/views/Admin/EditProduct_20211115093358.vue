@@ -276,21 +276,22 @@ export default {
         });
         await this.$store.dispatch("updateChanges", this.routeID);
         this.loading = false;
-         this.error = false;
-          this.errorMsg = "";
-         this.$bvToast.toast(`Perfect! You will be redirected to admin please refresh the page to see changes`, {
+         this.$bvToast.toast(`Perfect! You will be redirected to admin please refresh the page after`, {
           title: 'Success',
           variant:"warning",
-          
+          class:"position-fixed fixed-bottom m-0 rounded-0"
         })
          setTimeout(() => {
         this.$router.push({ path: "/admin" });
-
-      }, 5000);
+      }, 4000);
         
 
       }
-  
+      this.error = true;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
     },
 
     fileChange() {

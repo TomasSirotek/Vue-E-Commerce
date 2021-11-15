@@ -117,7 +117,7 @@ export default new Vuex.Store({
 
         snapshotItems.forEach((doc) => {
           var orderItemData = doc.data()
-         
+          /* console.log(doc.data()) */
           orderItems.push({
             ...orderItemData,
             id: doc.id,
@@ -194,7 +194,7 @@ export default new Vuex.Store({
     },
     removeItem(state, currentGame) {
       let indexItem = state.cart.indexOf(currentGame)
-     
+      console.log("test", indexItem)
       if (indexItem || indexItem == 0) {
         state.cart.splice(indexItem, 1)
       }

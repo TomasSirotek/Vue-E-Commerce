@@ -24,7 +24,7 @@
           
               <BodyItem
               v-for="(game,idx) in games"
-               :key="idx.id"
+               :key="game.id"
                :game="game"
               />
          

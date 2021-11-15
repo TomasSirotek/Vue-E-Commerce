@@ -120,7 +120,7 @@
                       <b-button id="button" class="btn-block" @click="update">
                         Update
                       </b-button>
-                      
+                      <b-button>TOAST</b-button>
                     </div>
                   </div>
                 </form>
@@ -195,7 +195,6 @@ export default {
   },
 
   methods: {
-   
     deleteGame() {
       this.boxOne = "";
       this.$bvModal
@@ -214,8 +213,7 @@ export default {
           this.boxOne = value;
           if (value == true) {
             this.$store.dispatch("deleteProduct", this.routeID);
-            this.$router.push({ path: "/admin" }); 
-            
+            this.$router.push({ path: "/admin" });
           }
         })
         .catch((err) => {
@@ -256,8 +254,7 @@ export default {
               });
               await this.$store.dispatch("updateChanges", this.routeID);
               this.loading = false;
-             
-            /*   this.$router.push({ path: "/admin" }); */  
+              this.$router.push({ path: "/admin" });  
              
             }
           );
@@ -276,21 +273,13 @@ export default {
         });
         await this.$store.dispatch("updateChanges", this.routeID);
         this.loading = false;
-         this.error = false;
-          this.errorMsg = "";
-         this.$bvToast.toast(`Perfect! You will be redirected to admin please refresh the page to see changes`, {
-          title: 'Success',
-          variant:"warning",
-          
-        })
-         setTimeout(() => {
         this.$router.push({ path: "/admin" });
-
-      }, 5000);
-        
-
       }
-  
+      this.error = true;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
     },
 
     fileChange() {

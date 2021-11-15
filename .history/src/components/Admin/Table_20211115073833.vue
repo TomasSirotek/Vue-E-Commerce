@@ -23,8 +23,8 @@
             </thead>
           
               <BodyItem
-              v-for="(game,idx) in games"
-               :key="idx.id"
+              v-for="game in games"
+               :key="game.id"
                :game="game"
               />
          

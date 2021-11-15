@@ -120,7 +120,7 @@
                       <b-button id="button" class="btn-block" @click="update">
                         Update
                       </b-button>
-                      
+                      <b-button @click="toast()">Toast with link</b-button>
                     </div>
                   </div>
                 </form>
@@ -195,7 +195,13 @@ export default {
   },
 
   methods: {
-   
+    toast() {
+        this.$bvToast.toast(`Toast with action link`, {
+          href: '#foo',
+          title: 'Example',
+          variant:"warning"
+        })
+      },
     deleteGame() {
       this.boxOne = "";
       this.$bvModal
@@ -276,21 +282,20 @@ export default {
         });
         await this.$store.dispatch("updateChanges", this.routeID);
         this.loading = false;
-         this.error = false;
-          this.errorMsg = "";
-         this.$bvToast.toast(`Perfect! You will be redirected to admin please refresh the page to see changes`, {
-          title: 'Success',
-          variant:"warning",
-          
+        /* this.$router.push({ path: "/admin" }); */
+         this.$bvToast.toast(`Toast with action link`, {
+          href: '#foo',
+          title: 'Example',
+          variant:"warning"
         })
-         setTimeout(() => {
-        this.$router.push({ path: "/admin" });
-
-      }, 5000);
         
 
       }
-  
+      this.error = true;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
     },
 
     fileChange() {

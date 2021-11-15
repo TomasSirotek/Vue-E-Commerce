@@ -2,7 +2,7 @@
   <div>
     <b-button v-b-toggle.collapse-1 variant="info">Archived Items</b-button>
     <b-collapse id="collapse-1" class="mt-2">
-      <b-card v-for="(item,idx) in archiveItems" :key="idx.id">
+      <b-card v-for="item,index) in archiveItems" :key="item.id">
         <p class="card-text">Order number :{{ item.orderNumber }}</p>
         <b-button v-b-toggle.collapse-1-inner size="sm">View Details</b-button>
         <b-button
@@ -24,8 +24,8 @@
         <b-collapse
           id="collapse-1-inner"
           class="mt-2"
-          v-for="(subitem,idx) in item.orderFromUser"
-          :key="idx.id"
+          v-for="subitem in item.orderFromUser"
+          :key="subitem"
         >
           <b-card>{{ subitem.title }} </b-card>
         </b-collapse>

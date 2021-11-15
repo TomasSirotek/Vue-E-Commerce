@@ -120,7 +120,7 @@
                       <b-button id="button" class="btn-block" @click="update">
                         Update
                       </b-button>
-                      
+                        <b-button @click="show()">Click</b-button>
                     </div>
                   </div>
                 </form>
@@ -133,6 +133,23 @@
       </div>
     </div>
   </div>
+
+  <b-toast id="updateToast" variant="warning" solid>
+      <template #toast-title>
+        <div class="d-flex flex-grow-1 align-items-baseline">
+          <b-img
+            blank
+            blank-color="#ff5555"
+            class="mr-2"
+            width="12"
+            height="12"
+          ></b-img>
+          <strong class="mr-auto">Success!</strong>
+          <small class="text-muted mr-2">2 seconds ago</small>
+        </div>
+      </template>
+      Product was update please refresh the page
+    </b-toast>
 </template>
 
 <script>
@@ -195,7 +212,10 @@ export default {
   },
 
   methods: {
-   
+    show(){
+       this.$bvToast.show("updateToast");
+      
+    },
     deleteGame() {
       this.boxOne = "";
       this.$bvModal
@@ -214,8 +234,7 @@ export default {
           this.boxOne = value;
           if (value == true) {
             this.$store.dispatch("deleteProduct", this.routeID);
-            this.$router.push({ path: "/admin" }); 
-            
+            this.$router.push({ path: "/admin" });
           }
         })
         .catch((err) => {
@@ -256,9 +275,8 @@ export default {
               });
               await this.$store.dispatch("updateChanges", this.routeID);
               this.loading = false;
-             
-            /*   this.$router.push({ path: "/admin" }); */  
-             
+               this.$router.push({ path: "/admin" }); 
+
             }
           );
           return;
@@ -276,21 +294,13 @@ export default {
         });
         await this.$store.dispatch("updateChanges", this.routeID);
         this.loading = false;
-         this.error = false;
-          this.errorMsg = "";
-         this.$bvToast.toast(`Perfect! You will be redirected to admin please refresh the page to see changes`, {
-          title: 'Success',
-          variant:"warning",
-          
-        })
-         setTimeout(() => {
         this.$router.push({ path: "/admin" });
-
-      }, 5000);
-        
-
       }
-  
+      this.error = true;
+      this.errorMsg = "Fill all please";
+      setTimeout(() => {
+        this.error = false;
+      }, 5000);
     },
 
     fileChange() {
@@ -322,6 +332,7 @@ export default {
     productPhotoName() {
       return this.$store.state.productPhotoName;
     },
+  
 
     descriptionHTML: {
       get() {
