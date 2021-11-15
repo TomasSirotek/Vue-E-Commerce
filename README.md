@@ -138,7 +138,7 @@
 Distributed under the MIT License. See LICENSE for more information.
 
 All the content and pictures were taken from sites
-and Logo and I do not own any of the content taken from these website and wont be published !
+and Logo and I DO NOT OWN any of the content taken from these website and would not  be published !
 * [Vue](https://github.com/vuejs/vue)
 * [Xzone Pictures](https://www.xzone.cz/)
 * [Logo](https://github.com/vuejs/vue)
