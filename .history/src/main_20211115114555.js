@@ -18,7 +18,7 @@ import Vuelidate from 'vuelidate'
 
 
 
-library.add(faUser,faSignOutAlt, faShoppingCart, faTrashAlt, faCheckCircle, faCog)
+library.add(faSignOutAlt, faShoppingCart, faTrashAlt, faCheckCircle, faCog)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.use(Vue2Editor);
 Vue.use(Vuelidate);
