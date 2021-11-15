@@ -1,0 +1,18 @@
+@import "./variables.scss";
+
+.topbar {
+  height: 4.375rem;
+}
+.sidebar hr.sidebar-divider {
+  margin: 0 1rem 1rem;
+}
+
+
+.sidebar-brand-text h1{
+  color: $secondary;
+}
+.nav-item-admin{
+  &hover\{
+    
+  }
+}

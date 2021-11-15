@@ -1,0 +1,48 @@
+<template>
+  <div class="search">
+    <input
+      class="form-control mr-sm-2"
+      type="rest"
+      placeholder="Search for your game"
+      aria-label="Search"
+      v-model.trim="input"
+      v-on:input="search()"
+      ref="input"
+      @click="show"
+    />
+    <button class="btn my-2 my-sm-0" type="submit">Search</button>
+    <SearchResults 
+    v-show="uiMenu"
+    />
+  </div>
+</template>
+
+<script>
+import SearchResults from "@/components/SearchResults.vue";
+export default {
+  name: "Search",
+  components: {
+    SearchResults,
+  },
+  data() {
+    return {
+      input: "",
+      uiMenu:false,
+    };
+  },
+  methods: {
+    search() {
+      this.$store.commit("setDisplaySearch", this.input);
+    },
+    show(){
+        this.uiMenu = true
+    }
+  },
+  computed: {},
+};
+</script>
+
+<style lang="scss" scoped>
+
+
+</style>

@@ -1,0 +1,28 @@
+[debug] [2021-11-15T06:20:44.080Z] ----------------------------------------------------------------------
+[debug] [2021-11-15T06:20:44.089Z] Command:       /usr/local/bin/node /usr/local/bin/firebase init
+[debug] [2021-11-15T06:20:44.089Z] CLI Version:   9.16.0
+[debug] [2021-11-15T06:20:44.089Z] Platform:      darwin
+[debug] [2021-11-15T06:20:44.089Z] Node Version:  v14.15.4
+[debug] [2021-11-15T06:20:44.178Z] Time:          Mon Nov 15 2021 07:20:44 GMT+0100 (Central European Standard Time)
+[debug] [2021-11-15T06:20:44.178Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-11-15T06:20:44.186Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2021-11-15T06:20:44.381Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-11-15T06:20:44.381Z] > authorizing via signed-in user (tomassimko07@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /Users/Tomas/Desktop/pwd-exam/e-commerce-shop
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[debug] [2021-11-15T06:20:46.155Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2021-11-15T06:20:46.156Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
