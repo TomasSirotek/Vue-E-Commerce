@@ -98,13 +98,14 @@
   - [x] Route guard
 - [x] Products
   - [x] List of products by category
-  - [x] Edit product as a admin 
+  - [x] Edit/Delete product as a admin 
   - [x] Detailed information about the product
   - [x] Add products as a admin
   - [x] Add/Remove product from/to "basket"
   - [x] Cannot buy products if not logged in 
   - [x] Cannot buy product that are not in stock
 - [x] Responsive
+- [x] Use of BootstrapVue Toast and Modals for better UX
 - [x] User Account
   - [x] Profile page with editable and updatable UserName,LastName etc..
   - [x] Availability to buy products after creating account only !
@@ -114,7 +115,7 @@
   - [x] Add products to db
   - [x] View ordered products
   - [x] Choice of deleting products / orders
-  - [x] Quill Editor with fb storage upload 
+  - [x] QUILL Editor with fb storage upload 
 
 
 <!-- GETTING STARTED -->
