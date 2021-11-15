@@ -60,6 +60,7 @@
     <li><a href="#features">Features</a></li>
     <li><a href="#details">Details</a></li>
     <li><a href="#mobile">Mobile</a></li>
+    <li><a href="#under-constraction">Under Constraction</a></li>
     <li><a href="#licence">License</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -131,7 +132,11 @@
 
 ![Screenshot 2021-11-15 at 19 39 17](https://user-images.githubusercontent.com/72190589/141840569-0c1dfd0a-1021-42eb-be39-56dd92f4cdf2.png)
 
+## Under Constraction
 
+- [x] Page is missing 404 page !
+- [x] Small fron-end bugs to be fixed 
+- [x] Firebase functions to fully use potencial of database and Authorization ! 
 
 ## Licence 
 
