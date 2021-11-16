@@ -142,11 +142,11 @@
 
 Distributed under the MIT License. See LICENSE for more information.
 
-All the content and pictures were taken from sites
-and Logo and I DO NOT OWN any of the content taken from these website and would not  be published !
+All the content and pictures were borrowed from these sites
+and logo and I DO NOT OWN any of the content taken from these website and would not  be published !
 * [Vue](https://github.com/vuejs/vue)
 * [Xzone Pictures](https://www.xzone.cz/)
-* [Logo](https://github.com/vuejs/vue)
+* [Logo](https://www.seekpng.com/ipng/u2q8w7r5r5o0u2e6_11917-gamestop-logo-old-game-uk-logo-png/)
 
 My 2022 PWA Exam project posted here on GitHub.
 Hope you will like it!
