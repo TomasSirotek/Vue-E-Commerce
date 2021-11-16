@@ -32,6 +32,7 @@
     :octocat: <a href="https://vue-e-commerce-e01af.web.app/">View Demo</a>
     ·
     :hammer:<a href="https://github.com/TomassSimko/Vue-E-Commerce/issues">Report Bug</a>
+    📄 <a href="https://github.com/TomassSimko/UML-diagram">UML Diagram</a>
     
     
   </p>
