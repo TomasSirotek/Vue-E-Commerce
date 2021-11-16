@@ -137,7 +137,7 @@
 - [x] Page is missing 404 page !
 - [x] Small fron-end bugs to be fixed 
 - [x] Firebase functions to fully use potencial of database and Authorization ! 
-
+- [x] Time Stamps and Information about which Admin user added products ! 
 ## Licence 
 
 Distributed under the MIT License. See LICENSE for more information.
